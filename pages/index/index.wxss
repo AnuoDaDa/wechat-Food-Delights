@@ -238,4 +238,5 @@ border-radius: 8rpx;
 .heartNum{
   font-size: 14px;
   margin-left: 10rpx;
+  line-height: 32rpx;
 }

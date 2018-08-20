@@ -1,7 +1,9 @@
 {
   "pages": [
+   
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/explore/explore"
   ],
   "tabBar": {
     "color": "#999999",
@@ -42,7 +44,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Food&&Delights",
     "navigationBarTextStyle": "black"
   }
 }

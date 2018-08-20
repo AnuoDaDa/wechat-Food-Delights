@@ -1,0 +1,55 @@
+<view class="container">
+  <!-- 搜索部分 -->
+  <view class='exploreBox'>
+    <view class='explore_middle'>
+      <view class='explore'>
+        <icon class='icon' type='search' size='14' color='#FEDE24'> </icon>
+        <input class="weui-input" auto-focus />
+      </view>
+      <text class='exeWords'>搜索</text>
+    </view>
+  </view>
+  <!-- 搜索部分 -->
+  <!-- 最近搜索 -->
+  <view class='recentExp'>
+    <view class='recnetExp_middle'>
+      <text class='recentExpWords'>最近搜索</text>
+      <image class='junk_box' src='../../imgs/junk_box.png'></image>
+    </view>
+    <view class='recordShow'>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+    </view>
+
+    <view class='recordShow'>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+    </view>
+
+  </view>
+  <!-- 最近搜索 -->
+
+  <!-- 热门搜索 -->
+
+  <view class='recentExp'>
+    <view class='recnetExp_middle'>
+      <text class='recentExpWords'>热门搜索</text>
+      <image class='junk_box'></image>
+    </view>
+    <view class='recordShow'>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+    </view>
+
+    <view class='recordShow'>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+      <view class='historyWords'>鸡肉</view>
+    </view>
+
+  </view>
+  <!-- 热门搜索、 -->
+</view>

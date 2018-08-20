@@ -1,0 +1,91 @@
+.exploreBox {
+  width: 750rpx;
+  height: 60rpx;
+}
+
+.explore_middle {
+  margin: 0 auto;
+  width: 680rpx;
+ 
+  display: flex;
+  flex-direction: row;
+  height: 60rpx;
+}
+
+.explore {
+  width: 580rpx;
+  background-color: #f7f7f4;
+  height: 60rpx;
+  /* margin-top: 15rpx; */
+  border-radius: 14rpx;
+  align-items: cneter;
+  
+  box-sizing: border-box;
+  display: flex;
+  padding-bottom: 10rpx;
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+  /* box-sizing: border-box; */
+  flex-direction: row;
+}
+
+.icon{
+  margin-right: 40rpx;
+  margin-top: 5rpx;
+}
+.weui-input{
+  height: 30rpx;
+  width: 400rpx;
+  font-size: 12px;
+  /* background-color: pink; */
+}
+.exeWords {
+  /* text-align: center; */
+    height: 60rpx;
+    width: 100rpx;
+    line-height: 60rpx;
+    font-size: 14px;
+    text-align: right;
+}
+.recentExp{
+  width: 750rpx;
+  /* height: 900rpx; */
+  /* background-color: pink;、 */
+  padding-top: 90rpx;
+  padding-left: 40rpx;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding-right: 40rpx;
+}
+
+.recnetExp_middle{
+width: 670rpx;
+display: flex;
+justify-content: space-between;
+}
+.recentExpWords {
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  
+}
+
+.junk_box {
+width: 36rpx;
+height: 46rpx;
+
+}
+
+.recordShow{
+  width: 670rpx;
+  margin-top: 50rpx;
+  display: flex;
+  white-space: pre-wrap;
+  justify-content: space-between;
+}
+
+.historyWords{
+  padding: 20rpx 50rpx;
+  background-color: #F2F2F2;
+  display: inline-block;
+  border-radius: 15rpx;
+}

@@ -4,9 +4,9 @@ const app = getApp()
 
 Page({
 
-  move_to_explore: function() {
+  move_to_explore: function () {
     wx.navigateTo({
-      url: '../explore/explore'
+      url: '../logs/logs'
     })
   }
 })

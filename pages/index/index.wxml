@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <!-- 搜索部分 -->
-  <view class='exploreBox'>
+  <view class='exploreBox' bindtap='move_to_explore'>
     <view class='explore'>
       <icon type='search' size='10' color='#FEDE24'> </icon>
       <text class='expWords'>板栗烧鸡</text>
