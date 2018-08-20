@@ -4,10 +4,10 @@
     "pages/logs/logs"
   ],
   "tabBar": {
-    "color": "#B8B8B8",
-    "selectedColor": "#42BD56",
-    "backgroundColor": "#fff",
-    "borderStyle": "#CCCCCC",
+    "color": "#999999",
+    "selectedColor": "#595959",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "#DFDFDF",
     "list": [
       {
         "selectedIconPath": "imgs/mainPage_active.png",
