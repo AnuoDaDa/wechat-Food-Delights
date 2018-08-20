@@ -1,21 +1,241 @@
-/**index.wxss**/
-.userinfo {
+.exploreBox {
+  width: 750rpx;
+  height: 100rpx;
+  /* background: pink; */
+  position: fixed;
+  z-index: 11;
+  font-size: 12px;
+  color: lightgray;
+  text-align: center;
+  background-color: white;
+  /* opacity: 0.1; *//* display: flex; *//* align-items: center; */
+}
+
+.explore {
+  width: 680rpx;
+  background: #f7f7f4;
+  margin: 0 auto;
+  height: 70rpx;
+  margin-top: 15rpx;
+  border-radius: 10rpx;
+  line-height: 70rpx;
+  /* opacity: 0.4; *//* align-items: center; */
+}
+
+.expWords {
+  margin-left: 15rpx;
+}
+
+.clearPosition {
+  width: 750rpx;
+  height: 100rpx;
+  background-color: white;
+}
+
+.todayFood {
+  width: 680rpx;
+  height: 860rpx;
+  /* background: green; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding-top: 20rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.todayFoodWords {
+  width: 680rpx;
+  height: 40rpx;
+  /* background-color: pink; */
+  border-left: 10rpx solid #ffd900;
+  box-sizing: border-box;
+  padding-left: 15rpx;
+  font-size: 14px;
+  letter-spacing: 3rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 40rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.viewAll {
+  color: #ffd800;
+  font-size: 12px;
 }
 
-.usermotto {
-  margin-top: 200px;
+.firstImage_nav {
+  width: 680rpx;
+  height: 520rpx;
+  /* background-color: pink; */
+  margin-top: 30rpx;
+}
+
+.firstImage {
+  width: 680rpx;
+  height: 340rpx;
+}
+
+.introduce {
+  width: 680rpx;
+  height: 110rpx;
+  /* background-color: yellowgreen; */
+  padding-top: 15rpx;
+  box-sizing: border-box;
+  font-size: 14px;
+  letter-spacing: 2rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail {
+  color: #999;
+  font-size: 12px;
+  margin-top: 10rpx;
+  width: 500rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.new_dishes_more {
+  width: 680rpx;
+  height: 280rpx;
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: space-between;
+  /* padding-top: 20rpx; */
+  position: relative;
+}
+
+.newAndMore {
+  width: 330rpx;
+  height: 230rpx;
+}
+
+.newDish {
+  position: absolute;
+  top: 160rpx;
+  left: 40rpx;
+  color: white;
+}
+
+.moreDish {
+  top: 160rpx;
+  left: 390rpx;
+  color: white;
+  position: absolute;
+}
+
+.container .double {
+  margin-top: 20rpx;
+  height: 580rpx;
+  /* background-color: pink; */
+}
+
+.container .trible {
+  margin-top: 20rpx;
+  height: 500rpx;
+  /* background-color: pink; */
+}
+
+.container  .exploreDish{
+
+}
+
+.page-section-spacing {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scroll-view_H {
+  white-space: nowrap;
+}
+
+.scroll-view-item {
+  height: 480rpx;
+}
+
+.scroll-view-item_H {
+  display: inline-block;
+  width: 630rpx;
+  height: 480rpx;
+  position: relative;
+ 
+  /* margin-right: 20rpx; */
+}
+
+.specialType {
+display: inline-block;
+background-color: #FFD800;
+padding: 5rpx;
+font-size: 12px;
+position: absolute;
+top: 220rpx;
+left: 40rpx;
+border-radius: 8rpx;
+}
+
+
+.scroll-view-item_W {
+  display: inline-block;
+  width: 330rpx;
+  height: 480rpx;
+ 
+  /* margin-right: 20rpx; */
+}
+
+.dishWords {
+  display: flex;
+  font-size: 14px;
+  flex-direction: column;
+}
+
+.scroll-view_H .scroll-view-item_H {
+  white-space: normal;
+}
+
+.scroll-view_H .scroll-view-item_W{
+ white-space: normal;
+}
+
+.specialImage {
+  width: 610rpx;
+  height: 300rpx;
+   margin-bottom: 20rpx;
+}
+
+.specialImage1 {
+  width:280rpx;
+  height: 350rpx;
+   margin-bottom: 20rpx;
+}
+
+
+.demo-text-2 {
+  height: 480rpx;
+  /* background-color: red; */
+}
+
+.demo-text-2 {
+  height: 480rpx;
+  /* background-color: red; */
+}
+
+.dishName {
+  font-size: 14px;
+  letter-spacing: 2rpx;
+}
+
+.clickHeart{
+  width: 680rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.heart{
+  width: 32rpx;
+  height: 32rpx;
+  /* position: relative; */
+  /* background-image: url(../../imgs/heart.png); */
+}
+
+.heartNum{
+  font-size: 14px;
+  margin-left: 10rpx;
 }

@@ -1,13 +1,305 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <!-- 搜索部分 -->
+  <view class='exploreBox'>
+    <view class='explore'>
+      <icon type='search' size='10' color='#FEDE24'> </icon>
+      <text class='expWords'>板栗烧鸡</text>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- 搜索部分 -->
+  <!-- 清除位置 -->
+  <view class='clearPosition'></view>
+  <!-- 清除位置 -->
+
+  <!-- 今天吃神魔 -->
+  <view class='todayFood'>
+    <view class='todayFoodWords'>
+      今天吃什么？
+    </view>
+
+    <view class="firstImage_nav">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <text>鸡翅包饭</text>
+        <text class='detail'>鸡翅与糯米的黄金组合，香酥脆嫩</text>
+      </view>
+    </view>
+    <!-- 今天吃神魔 -->
+    <view class='new_dishes_more'>
+      <image class='newAndMore' src='../../imgs/chicken_rice.png'></image>
+      <image class='newAndMore' src='../../imgs/chicken_rice.png'></image>
+      <text class='newDish'>本周新菜</text>
+      <text class='moreDish'>更多鸡翅料理</text>
+    </view>
   </view>
+
+  <!-- 家常蒸菜大全 -->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      家常蒸菜大全
+    </view>
+
+    <view class="firstImage_nav double">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <text>35道家常风味蒸菜，吃出原汁本味</text>
+        <text class='detail'>清蒸鱼、粉蒸肉、蒸肉饼、蒸凤爪</text>
+      </view>
+    </view>
+  </view>
+  <!-- 家常蒸菜大全 -->
+
+
+  <!--  叔叔阿姨家常菜-->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      叔叔阿姨家常菜
+    </view>
+
+    <view class="firstImage_nav double">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <text>15道巧心思阿姨爷叔菜</text>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+  <!--  叔叔阿姨家常菜 -->
+
+
+
+  <!-- 凉一凉 、拌一拌-->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      凉一凉 、拌一拌
+    </view>
+
+    <view class="firstImage_nav double">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <text>15道巧心思阿姨爷叔菜</text>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+  <!--  凉一凉 、拌一拌 -->
+
+  <!--特别栏目-->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      <text>特别栏目</text>
+      <text class='viewAll'>查看全部</text>
+    </view>
+
+    <view class="firstImage_nav double">
+      <!-- <view class="page-section"> -->
+      <view class="page-section-spacing">
+        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+          <view id="demo1" class="scroll-view-item_H demo-text-1">
+            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
+            <view class='dishWords'>
+              <text>15道巧心思阿姨爷叔菜</text>
+              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+            </view>
+            <view class='specialType'>大厨家常菜</view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_H demo-text-1">
+            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
+            <view class='dishWords'>
+              <text>15道巧心思阿姨爷叔菜</text>
+              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+              <view class='specialType'>大厨家常菜</view>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_H demo-text-1">
+            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
+            <view class='dishWords'>
+              <text>15道巧心思阿姨爷叔菜</text>
+              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+            </view>
+            <view class='specialType'>大厨家常菜</view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_H demo-text-1">
+            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
+            <view class='dishWords'>
+              <text>15道巧心思阿姨爷叔菜</text>
+              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+            </view>
+            <view class='specialType'>大厨家常菜</view>
+          </view>
+
+        </scroll-view>
+        <!-- </view> -->
+      </view>
+
+    </view>
+  </view>
+  <!--  特别栏目 -->
+  <!-- <!人气嘉宾> -->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      <text>人气嘉宾</text>
+      <text class='viewAll'>查看全部</text>
+    </view>
+
+    <view class="firstImage_nav double">
+      <!-- <view class="page-section"> -->
+      <view class="page-section-spacing">
+        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+          <view id="demo1" class="scroll-view-item_W demo-text-2">
+            <image class='specialImage1' src='../../imgs/laoyang.png'></image>
+            <view class='dishWords'>
+              <text>老杨</text>
+              <text class='detail'>高级烹饪师</text>
+            </view>
+          </view>
+
+        </scroll-view>
+        <!-- </view> -->
+      </view>
+
+    </view>
+  </view>
+  <!-- <!人气嘉宾> -->
+
+
+
+  <!-- 发现新菜 -->
+  <view class='todayFood double'>
+    <view class='todayFoodWords'>
+      发现新菜
+    </view>
+    <view class="firstImage_nav trible">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <view class='clickHeart'>
+          <text>15道巧心思阿姨爷叔菜</text>
+          <view>
+          <image class="heart" src='../../imgs/heart.png'></image>
+          <text class="heartNum">36</text>
+          </view>
+        </view>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+
+
+<view class='todayFood trible'>
+    <view class="firstImage_nav trible">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <view class='clickHeart'>
+          <text>15道巧心思阿姨爷叔菜</text>
+          <view>
+          <image class="heart" src='../../imgs/heart.png'></image>
+          <text class="heartNum">36</text>
+          </view>
+        </view>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='todayFood trible'>
+    <view class="firstImage_nav trible">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <view class='clickHeart'>
+          <text>15道巧心思阿姨爷叔菜</text>
+          <view>
+          <image class="heart" src='../../imgs/heart.png'></image>
+          <text class="heartNum">36</text>
+          </view>
+        </view>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+
+ <view class='todayFood trible'>
+    <view class="firstImage_nav trible">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <view class='clickHeart'>
+          <text>15道巧心思阿姨爷叔菜</text>
+          <view>
+          <image class="heart" src='../../imgs/heart.png'></image>
+          <text class="heartNum">36</text>
+          </view>
+        </view>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+
+ <view class='todayFood trible'>
+    <view class="firstImage_nav trible">
+      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <view class='introduce'>
+        <view class='clickHeart'>
+          <text>15道巧心思阿姨爷叔菜</text>
+          <view>
+          <image class="heart" src='../../imgs/heart.png'></image>
+          <text class="heartNum">36</text>
+          </view>
+        </view>
+        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+      </view>
+    </view>
+  </view>
+  <!-- 发现新菜 -->
+
 </view>
