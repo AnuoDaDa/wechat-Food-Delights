@@ -1,4 +1,5 @@
 <!--pages/Menu/menu.wxml-->
+<!-- 中间内容 -->
 <view class='box'>
   <!-- 菜品简介 -->
   <image class='top_img'></image>
@@ -100,3 +101,25 @@
   </view>
 
 </view>
+
+
+<!-- 底部按钮 -->
+
+  <view class='bottom_btn'>
+    <view class='share'>
+      <image class='btn_img' src='../../imgs/share.png'></image>
+      <text>分享</text>
+    </view>
+    <view class='collection'>
+      <image class='btn_img' src='../../imgs/collection.png'></image>
+      <text>收藏</text>
+    </view>
+    <view class='commments'>
+      <image class='btn_img' src='../../imgs/comment.png'></image>
+      <text>评论</text>
+    </view>
+    <view class='like'>
+      <image class='btn_img' src='../../imgs/black_unlike.png'></image>
+      <text>赞</text>
+    </view>
+  </view>
