@@ -1,0 +1,69 @@
+/* pages/classify/classify.wxss */
+
+.box {
+  width: 720rpx;
+  height: 2070rpx;
+  background-color: green;
+  margin: 15rpx auto;
+}
+
+/* 顶部搜索框 */
+.search {
+  /* 弹性布局 */
+  display: flex;
+  width: 100%;
+  height: 70rpx;
+  justify-content: center;
+  position: relative;
+}
+
+/* 搜索框 */
+.search_input {
+  width: 720rpx;
+  height: 60rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 32rpx;
+  background-color: #f6f7f2;
+}
+
+/* 搜索图标 */
+.searchImg{
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top:15rpx;
+  left: 265rpx;
+  z-index: 2;
+}
+
+/* 分类 */
+.classify-title {
+  width: 710rpx;
+  text-align: left;
+  font-size: 32rpx;
+  border-left: 10rpx solid #fdd900;
+  background-color: red;
+  margin: 15rpx 0;
+}
+
+/* 根据食材分类 */
+.material {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+.material_item {
+width: 230rpx;
+height: 300rpx;
+background-color: red;
+margin: 5rpx;
+text-align: center;
+}
+
+.material_img {
+  width: 100%;
+  height: 230rpx;
+  background-color: white;
+}

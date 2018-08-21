@@ -1,0 +1,37 @@
+<!--pages/class/class.wxml-->
+<view class='box'>
+  <!-- 搜索框 -->
+  <view class='top_search'>
+    <view class='search'>
+      <image src='../../imgs/search.png' class='searchImg'></image>
+      <text class='search_text' class='input_text'>选中的分类</text>
+      <input type='text' class='search_input'></input>
+    </view>
+    <text class='search_text'>搜索</text>
+  </view>
+
+  <!-- 分类标签 -->
+
+  <view>
+    <scroll-view class='tags' scroll-x="true" scroll-with-animation="true" scroll-left>
+      <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" style=' display: inline-block;'>
+        <text class='tag_name'>标签</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 菜谱列表 -->
+
+  <view class='Class_Menu'>
+   <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" >
+        <view class='Menu_item'>
+          <image class='Menu_img' bindtap="bindViewTap"></image>
+          <image class='Menu_play' src='../../imgs/play.png'></image>
+          <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange" ></image>
+          <text class='Menu_likeNum'>11</text>
+          <text>name</text>
+          <view class='Menu_info'>介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</view>
+        </view>
+      </view>
+  </view>
+</view>

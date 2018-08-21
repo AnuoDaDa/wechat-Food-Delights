@@ -1,0 +1,154 @@
+/* pages/class/class.wxss */
+
+.box {
+  width: 720rpx;
+  height: 3000rpx;
+  background-color: green;
+  margin: 15rpx auto;
+}
+
+/* 顶部搜索框 */
+
+.top_search {
+  display: flex;
+}
+
+.search {
+  /* 弹性布局 */
+  width: 600rpx;
+  height: 70rpx;
+  display: inline-block;
+  position: relative;
+  /* flex-direction: row; */
+}
+
+/* 搜索框 */
+
+.search_input {
+  width: 100%;
+  height: 60rpx;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  background-color: #f6f7f2;
+}
+
+.input_text {
+  font-size: 32rpx;
+  position: absolute;
+  left: 70rpx;
+  top: 10rpx;
+  z-index: 3;
+}
+
+/* 搜索图标 */
+
+.searchImg {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 15rpx;
+  left: 20rpx;
+  z-index: 2;
+}
+
+/* 搜索框后面的内容 */
+
+.search_text {
+  width: 200rpx;
+  height: 60rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+}
+
+/* 标签 */
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  white-space: nowrap;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+/* 标签名称 */
+
+.tag_name {
+  height: 20rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  padding: 20rpx 40rpx;
+  background-color: #fdf9d4;
+  margin-right: 20rpx;
+  border-radius: 20rpx;
+}
+
+/* 菜谱展示 */
+
+.Class_Menu {
+  display: flex;
+  flex-direction: row;
+  /* 是否换行 */
+  flex-wrap: wrap;
+}
+
+.Menu_item {
+  width: 340rpx;
+  height: 520rpx;
+  margin: 0 10rpx 50rpx;
+  background-color: red;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.Menu_img {
+  width: 100%;
+  height: 400rpx;
+  background-color: blue;
+}
+
+/* 播放图标 */
+
+.Menu_play {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 20rpx;
+}
+
+/* 喜欢图标 */
+
+.Menu_like {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 120rpx;
+  right: 75rpx;
+}
+
+.Menu_likeNum {
+  position: absolute;
+  bottom: 127rpx;
+  right: 34rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+
+.Menu_info {
+  display: flex;
+  flex-direction: row;
+  /* 是否换行 */
+  flex-wrap: wrap;
+  font-size: 30rpx;
+  color: #969696;
+  width: 100%;
+  /* height: 100rpx; */
+}

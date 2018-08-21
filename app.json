@@ -3,7 +3,9 @@
    
     "pages/index/index",
     "pages/logs/logs",
-    "pages/explore/explore"
+    "pages/explore/explore",
+    "pages/class/class",
+    "pages/classify/classify"
   ],
   "tabBar": {
     "color": "#999999",
@@ -20,7 +22,7 @@
       {
         "selectedIconPath": "imgs/type_active.png",
         "iconPath": "imgs/type.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/classify/classify",
         "text": "分类"
       },
       {

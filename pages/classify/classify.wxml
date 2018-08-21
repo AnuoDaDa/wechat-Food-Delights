@@ -1,0 +1,25 @@
+<!--pages/classify/classify.wxml-->
+<!-- 分类界面 -->
+
+<view class='box'>
+  <!-- 搜索框 -->
+  <view class='search'>
+    <image src='../../imgs/search.png' class='searchImg'></image>
+    <input type='text' class='search_input' placeholder='板栗烧鸡'></input>
+  </view>
+  <!-- 根据食材查找菜谱 -->
+  <view>
+    <view class='classify-title'>根据食材查找菜谱</view>
+    <!-- 列表 -->
+    <view  class='material'>
+      <view wx:for="{{materials}}" wx:for-item="material" wx:key="xxx">
+        <view class='material_item'>
+          <image class='material_img' bindtap="bindViewTap"></image>
+          <text>name</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
