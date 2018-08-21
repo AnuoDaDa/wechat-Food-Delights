@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class='loginPage'>
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <view class='userBox'>
+          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <view class='userMsg'>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+            <text class='userId'>id:1000000000</text>
+            <text class='userId' wx:if="{{userInfo.gender==1}}">男</text>
+            <text class='userId' wx:elif="{{userInfo.gender==2}}">女</text>
+            <text class='userId' wx:else>未知</text>
+
+
+          </view>
+        </view>
+
+
+      </block>
+    </view>
+
+    <!-- 单页选项切换页面 -->
+    <view class='topTabSwiper'>
+      <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>创建菜单</view>
+      <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'> 喜欢</view>
+    </view>
+
+    <swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
+      <swiper-item>
+        <view class='swiper_con'>welcome come to 推荐</view>
+      </swiper-item>
+      <swiper-item>
+        <view class='swiper_con'>welcome come to 热点</view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
