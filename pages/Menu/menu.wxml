@@ -1,0 +1,102 @@
+<!--pages/Menu/menu.wxml-->
+<view class='box'>
+  <!-- 菜品简介 -->
+  <image class='top_img'></image>
+  <image class='Menu_play' src='../../imgs/play.png'></image>
+  <view class='info'>
+    <text class='info_name'>名字</text>
+    <text class='info_comment'>82条评论.118人喜欢</text>
+    <text class='info_content'>这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜</text>
+  </view>
+  <!-- 作者介绍 -->
+  <view class='actorInfo'>
+    <image class='actorImg'></image>
+    <text class='actorName'>Ritcha</text>
+    <text class='actorIcon'>作者</text>
+  </view>
+
+  <!-- 食材 -->
+  <view class='materialInfo'>
+    <view class='materiaTtitle'>食材</view>
+    <!-- 食材列表 -->
+    <view wx:for="{{materials}}" wx:for-item="material" wx:key="xxx">
+      <view class='material_list'>
+        <text>猪肘肉</text>
+        <text>250克</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 视频中用到的厨具 -->
+  <view class='kitchenUtensils'>
+    <view class='Utensils_title'>以下为视频中用到的厨具</view>
+    <!-- 列表 -->
+    <view class='Utensils'>
+      <view wx:for="{{kitchenUtensils}}" wx:for-item="kitchenUtensil" wx:key="xxx">
+        <view class='Utensil_list'>
+          <image class='Utensil_img'></image>
+          <text>康宁全透明</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 步骤 -->
+  <view class='Menu_step'>
+    <view class='steps'>
+      <view wx:for="{{steps}}" wx:for-item="step" wx:key="xxx">
+        <view class='step_list'>
+          <text class='step_tip'>步骤/{{steps.length}}</text>
+          <image class='step_img'></image>
+          <text class='step_content'>康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 标签 -->
+  <view class='tags'>
+    <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" style=' display: inline-block;'>
+      <text class='tag_name'>标签</text>
+    </view>
+  </view>
+
+  <!-- 评论 -->
+
+  <view class='comment'>
+    <!-- 标题 -->
+    <view class='comment_top'>
+      <text class='comment_title'>评论</text>
+      <text class='comment_num'>共{{comments.length}}条评论</text>
+    </view>
+
+    <!-- 我的评论 -->
+    <view class='myComment'>
+      <image class='myComment_img'></image>
+      <input class='comment_input' placeholder='想说什么别害羞！'></input>
+    </view>
+
+    <!-- 评论列表 -->
+
+    <view wx:for="{{comments}}" wx:for-item="comment" wx:key="xxx">
+      <view class='comments_list'>
+        <view class='user_img'>
+          <image></image>
+        </view>
+        <view class='user_comment'>
+          <text class='user_name'>username</text>
+          <text class='user_content'>评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论</text>
+          <view class='user_comment_bottom'>
+            <text class='user_name'>06-30</text>
+            <text class='user_name'>回复</text>
+            <!-- <image class='like'></image>
+              <text class='like_num'>19</text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+</view>

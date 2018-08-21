@@ -12,20 +12,20 @@
 
   <!-- 分类标签 -->
 
-  <view>
+  <!-- <view>
     <scroll-view class='tags' scroll-x="true" scroll-with-animation="true" scroll-left>
       <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" style=' display: inline-block;'>
         <text class='tag_name'>标签</text>
       </view>
     </scroll-view>
-  </view>
+  </view> -->
 
   <!-- 菜谱列表 -->
 
   <view class='Class_Menu'>
    <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" >
         <view class='Menu_item'>
-          <image class='Menu_img' bindtap="bindViewTap"></image>
+          <image class='Menu_img' bindtap="Menu_change"></image>
           <image class='Menu_play' src='../../imgs/play.png'></image>
           <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange" ></image>
           <text class='Menu_likeNum'>11</text>

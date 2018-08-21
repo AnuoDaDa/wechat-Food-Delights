@@ -1,10 +1,10 @@
 {
   "pages": [
-   
     "pages/index/index",
+    "pages/Menu/menu",
+    "pages/class/class",
     "pages/logs/logs",
     "pages/explore/explore",
-    "pages/class/class",
     "pages/classify/classify"
   ],
   "tabBar": {
