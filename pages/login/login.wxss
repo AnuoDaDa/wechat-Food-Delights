@@ -1,0 +1,41 @@
+.loginBox {
+  width:700rpx;
+  height: 1000rpx;
+  /* background-color: pink; */
+  margin: 0 auto;
+}
+
+.login {
+  width: 700rpx;
+  height: 800rpx;
+}
+
+
+.loginButtonBox{
+   width: 600rpx;
+   height:80rpx;
+   margin: 0 auto;
+   background-color: #FFD900;
+   padding-top: 20rpx;
+   box-sizing: border-box;
+}
+
+.loginButton{
+  
+  width: 210rpx;
+  height:50rpx;
+  /* background-color: green; */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weixinICcon{
+  width: 60rpx;
+  height: 50rpx;
+}
+
+.ability{
+  font-size: 14px;
+
+}

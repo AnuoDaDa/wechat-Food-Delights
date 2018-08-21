@@ -1,0 +1,12 @@
+<!--pages/login/login.wxml-->
+
+<view class='loginBox'>
+  <image class='login' src='../../imgs/login.png'></image>
+  <view class='loginButtonBox'>
+    <view class='loginButton'>
+      <image class='weixinICcon' src='../../imgs/weixinIcon.png'></image>
+      <view class='ability'>微信授权</view>
+    </view>
+  </view>
+
+</view>

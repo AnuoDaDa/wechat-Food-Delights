@@ -8,5 +8,11 @@ Page({
     wx.navigateTo({
       url: '../explore/explore'
     })
+  },
+  watchAll: function() {
+    wx.navigateTo({
+      url: '../show/show'
+    })
+
   }
 })

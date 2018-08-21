@@ -3,9 +3,13 @@
     "pages/index/index",
     "pages/Menu/menu",
     "pages/class/class",
+    "pages/show/show",
     "pages/logs/logs",
+    "pages/login/login",
+    "pages/loginSuccess/loginSuccess",
     "pages/explore/explore",
     "pages/classify/classify"
+    
   ],
   "tabBar": {
     "color": "#999999",
@@ -34,7 +38,7 @@
       {
         "selectedIconPath": "imgs/mine_active.png",
         "iconPath": "imgs/mine.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/loginSuccess/loginSuccess",
         "text": "我"
       }
     ]
