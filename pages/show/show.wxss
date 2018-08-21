@@ -1,0 +1,38 @@
+.movieGallery {
+  margin-top: 20rpx;
+  width: 750rpx;
+  /* background: pink; */
+  /* height: 1500rpx; */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+.rmovies{
+   
+   width: 330rpx;
+  height: 560rpx;
+  /* background: green; */
+}
+
+.rmoives_image {
+   width: 320rpx;
+  height: 400rpx;
+}
+
+.pin {
+  display: block;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pin1 {
+  display: block;
+  font-size: 10px;
+  color: #BABABA;
+  margin-top: 10rpx;
+}
+

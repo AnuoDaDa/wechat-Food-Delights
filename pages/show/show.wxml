@@ -1,0 +1,25 @@
+<view class="container">
+  <view class='movieGallery'>
+    <view class='rmovies'>
+      <image class='rmoives_image' src='../../imgs/laoyang.png'></image>
+      <text class='pin'>老杨</text>
+      <text class='pin1'>美食作家</text>
+    </view>
+    <view class='rmovies'>
+      <image class='rmoives_image' src='../../imgs/laoyang.png'></image>
+      <text class='pin'>老杨</text>
+      <text class='pin1'>美食作家</text>
+    </view>
+    <view class='rmovies'>
+      <image class='rmoives_image' src='../../imgs/laoyang.png'></image>
+      <text class='pin'>老杨</text>
+      <text class='pin1'>美食作家</text>
+    </view>
+    <view class='rmovies'>
+      <image class='rmoives_image' src='../../imgs/laoyang.png'></image>
+      <text class='pin'>老杨</text>
+      <text class='pin1'>美食作家</text>
+    </view>
+  </view>
+
+</view>
