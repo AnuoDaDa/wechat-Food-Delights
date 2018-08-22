@@ -53,8 +53,12 @@
   display: flex;
   justify-content: space-between;
   line-height: 40rpx;
+  /* margin-top: 20rpx; */
 }
 
+.findNewFood{
+  margin-top: 30rpx;
+}
 .viewAll {
   color: #ffd800;
   font-size: 12px;
@@ -124,13 +128,13 @@
 }
 
 .container .double {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   height: 580rpx;
   /* background-color: pink; */
 }
 
 .container .trible {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   height: 500rpx;
   /* background-color: pink; */
 }

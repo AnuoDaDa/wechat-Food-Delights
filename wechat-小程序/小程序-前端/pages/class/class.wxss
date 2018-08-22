@@ -3,7 +3,7 @@
 .box {
   width: 720rpx;
   height: 3000rpx;
-  background-color: green;
+  /* background-color: green; */
   margin: 15rpx auto;
 }
 
@@ -101,7 +101,7 @@
   width: 340rpx;
   height: 520rpx;
   margin: 0 10rpx 50rpx;
-  background-color: red;
+  /* background-color: red; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@
 .Menu_img {
   width: 100%;
   height: 400rpx;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 /* 播放图标 */
@@ -126,11 +126,11 @@
 /* 喜欢图标 */
 
 .Menu_like {
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
   position: absolute;
-  bottom: 120rpx;
-  right: 75rpx;
+  bottom: 136rpx;
+  right: 80rpx;
 }
 
 .Menu_likeNum {

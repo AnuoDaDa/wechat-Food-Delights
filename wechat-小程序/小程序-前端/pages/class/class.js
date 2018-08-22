@@ -1,10 +1,9 @@
 // pages/class/class.js
+const util = require('../../utils/util.js');
 Page({
 
   /* 页面的初始数据*/
   data: {
-    title: "",
-    tags:[0,0,0,0,0,0,0,0,0,0,0,0],
     likeImg:"../../imgs/unlike.png"
   },
 
@@ -15,16 +14,22 @@ Page({
     })
   },
   Menu_change: function (event) {
+    console.log(event.currentTarget.dataset.foodid);
     wx.navigateTo({
-      url: '../Menu/menu?title=微信小程序'
+      url: '../Menu/menu?id='+event.currentTarget.dataset.foodid
     })
   },
 
   onLoad: function (options) {
-    this.setData({
-      // 页面初始化 options为页面跳转所带来的参数
-      title: options.title
-    })
+    console.log(options.type);
+    var that = this;
+    util.ask('all_food', function (data1) {
+      that.setData({
+        allFood: data1.food,
+        foodType: options.type
+       
+      });
+    });
   },
 
 })

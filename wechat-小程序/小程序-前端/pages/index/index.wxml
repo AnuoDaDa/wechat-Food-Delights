@@ -15,36 +15,36 @@
   <!-- 今天吃神魔 -->
   <view class='todayFood'>
     <view class='todayFoodWords'>
-      今天吃什么？
+      今天吃点啥？
     </view>
 
     <view class="firstImage_nav">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <image class='firstImage' data-foodid="{{allFood[random1].ch_id}}" bindtap="Menu_change" src='{{allFood[random1].imageKey}}'></image>
       <view class='introduce'>
-        <text>鸡翅包饭</text>
-        <text class='detail'>鸡翅与糯米的黄金组合，香酥脆嫩</text>
+        <text>{{allFood[random1].ch_name}}</text>
+        <text class='detail'>{{allFood[random1].ch_short_intro}}</text>
       </view>
     </view>
     <!-- 今天吃神魔 -->
     <view class='new_dishes_more'>
-      <image class='newAndMore' src='../../imgs/chicken_rice.png'></image>
-      <image class='newAndMore' src='../../imgs/chicken_rice.png'></image>
+      <image class='newAndMore' data-foodid="{{allFood[random1+1].ch_id}}" bindtap="Menu_change" src='{{allFood[random1+1].imageKey}}'></image>
+      <image class='newAndMore' data-foodid="{{allFood[random1-1].ch_id}}" bindtap="Menu_change" src='{{allFood[random1-1].imageKey}}'></image>
       <text class='newDish'>本周新菜</text>
-      <text class='moreDish'>更多鸡翅料理</text>
+      <text class='moreDish'>更多美食</text>
     </view>
   </view>
 
   <!-- 家常蒸菜大全 -->
   <view class='todayFood double'>
     <view class='todayFoodWords'>
-      家常蒸菜大全
+      家常菜大全
     </view>
 
     <view class="firstImage_nav double">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <image class='firstImage' data-foodid="{{allFood[random1].ch_id}}" bindtap="Menu_change" src='{{allFood[random1].imageKey}}'></image>
       <view class='introduce'>
-        <text>35道家常风味蒸菜，吃出原汁本味</text>
-        <text class='detail'>清蒸鱼、粉蒸肉、蒸肉饼、蒸凤爪</text>
+        <text>{{allFood[random1].ch_name}}</text>
+        <text class='detail'>{{allFood[random1].ch_short_intro}}</text>
       </view>
     </view>
   </view>
@@ -58,10 +58,10 @@
     </view>
 
     <view class="firstImage_nav double">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <image class='firstImage' data-foodid="{{homeDish[random2].ch_id}}" bindtap="Menu_change" src='{{homeDish[random2].imageKey}}'></image>
       <view class='introduce'>
-        <text>15道巧心思阿姨爷叔菜</text>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+        <text>{{homeDish[random2].ch_name}}</text>
+        <text class='detail'>{{homeDish[random2].ch_short_intro}}</text>
       </view>
     </view>
   </view>
@@ -69,21 +69,21 @@
 
 
 
-  <!-- 凉一凉 、拌一拌-->
+  <!-- 早点你就多一点-->
   <view class='todayFood double'>
     <view class='todayFoodWords'>
-      凉一凉 、拌一拌
+      早点你就多一点
     </view>
 
     <view class="firstImage_nav double">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
+      <image class='firstImage' data-foodid="{{breakFast[random3].ch_id}}" bindtap="Menu_change" src='{{breakFast[random3].imageKey}}'></image>
       <view class='introduce'>
-        <text>15道巧心思阿姨爷叔菜</text>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+        <text>{{breakFast[random3].ch_name}}</text>
+        <text class='detail'>{{breakFast[random3].ch_short_intro}}</text>
       </view>
     </view>
   </view>
-  <!--  凉一凉 、拌一拌 -->
+  <!-- 早点你就多一点 -->
 
   <!--特别栏目-->
   <view class='todayFood double'>
@@ -96,41 +96,17 @@
       <!-- <view class="page-section"> -->
       <view class="page-section-spacing">
         <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
-          <view id="demo1" class="scroll-view-item_H demo-text-1">
-            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
+
+          <view id="demo1" class="scroll-view-item_H demo-text-1" wx:for="{{allFood}}">
+            <image class='specialImage' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.imageKey}}'></image>
             <view class='dishWords'>
-              <text>15道巧心思阿姨爷叔菜</text>
-              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
+              <text>{{item.ch_name}}</text>
+              <text class='detail'>{{item.ch_short_intro}}</text>
             </view>
-            <view class='specialType'>大厨家常菜</view>
+            <view class='specialType'>每日必备</view>
           </view>
 
-          <view id="demo1" class="scroll-view-item_H demo-text-1">
-            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
-            <view class='dishWords'>
-              <text>15道巧心思阿姨爷叔菜</text>
-              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-              <view class='specialType'>大厨家常菜</view>
-            </view>
-          </view>
 
-          <view id="demo1" class="scroll-view-item_H demo-text-1">
-            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
-            <view class='dishWords'>
-              <text>15道巧心思阿姨爷叔菜</text>
-              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-            </view>
-            <view class='specialType'>大厨家常菜</view>
-          </view>
-
-          <view id="demo1" class="scroll-view-item_H demo-text-1">
-            <image class='specialImage' src='../../imgs/chicken_rice.png'></image>
-            <view class='dishWords'>
-              <text>15道巧心思阿姨爷叔菜</text>
-              <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-            </view>
-            <view class='specialType'>大厨家常菜</view>
-          </view>
 
         </scroll-view>
         <!-- </view> -->
@@ -221,86 +197,24 @@
 
 
   <!-- 发现新菜 -->
-  <view class='todayFood double'>
-    <view class='todayFoodWords'>
-      发现新菜
-    </view>
-    <view class="firstImage_nav trible">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
-      <view class='introduce'>
-        <view class='clickHeart'>
-          <text>15道巧心思阿姨爷叔菜</text>
-          <view>
-          <image class="heart" src='../../imgs/heart.png'></image>
-          <text class="heartNum">36</text>
-          </view>
-        </view>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-      </view>
-    </view>
+
+  <view class='todayFoodWords findNewFood'>
+    发现新菜
   </view>
-
-
-<view class='todayFood trible'>
-    <view class="firstImage_nav trible">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
-      <view class='introduce'>
-        <view class='clickHeart'>
-          <text>15道巧心思阿姨爷叔菜</text>
-          <view>
-          <image class="heart" src='../../imgs/heart.png'></image>
-          <text class="heartNum">36</text>
+  <view wx:for="{{allFood}}" wx:key="unique">
+    <view class='todayFood double'>
+      <view class="firstImage_nav trible">
+        <image class='firstImage' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.imageKey}}'></image>
+        <view class='introduce'>
+          <view class='clickHeart'>
+            <text>{{item.ch_name}}</text>
+            <view>
+              <image class="heart" src='../../imgs/heart.png'></image>
+              <text class="heartNum">36</text>
+            </view>
           </view>
+          <text class='detail'>{{item.ch_short_intro}}</text>
         </view>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-      </view>
-    </view>
-  </view>
-
-  <view class='todayFood trible'>
-    <view class="firstImage_nav trible">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
-      <view class='introduce'>
-        <view class='clickHeart'>
-          <text>15道巧心思阿姨爷叔菜</text>
-          <view>
-          <image class="heart" src='../../imgs/heart.png'></image>
-          <text class="heartNum">36</text>
-          </view>
-        </view>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-      </view>
-    </view>
-  </view>
-
- <view class='todayFood trible'>
-    <view class="firstImage_nav trible">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
-      <view class='introduce'>
-        <view class='clickHeart'>
-          <text>15道巧心思阿姨爷叔菜</text>
-          <view>
-          <image class="heart" src='../../imgs/heart.png'></image>
-          <text class="heartNum">36</text>
-          </view>
-        </view>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
-      </view>
-    </view>
-  </view>
-
- <view class='todayFood trible'>
-    <view class="firstImage_nav trible">
-      <image class='firstImage' src='../../imgs/chicken_rice.png'></image>
-      <view class='introduce'>
-        <view class='clickHeart'>
-          <text>15道巧心思阿姨爷叔菜</text>
-          <view>
-          <image class="heart" src='../../imgs/heart.png'></image>
-          <text class="heartNum">36</text>
-          </view>
-        </view>
-        <text class='detail'>叉烧肉，豉油鸡、炸猪排、卤面</text>
       </view>
     </view>
   </view>

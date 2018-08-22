@@ -1,13 +1,12 @@
 <!--pages/Menu/menu.wxml-->
-<!-- 中间内容 -->
-<view class='box'>
+<view class='box' wx:for="{{thisFood}}" wx:key="unique" wx:if="{{item.ch_id==foodId}}">
   <!-- 菜品简介 -->
-  <image class='top_img'></image>
-  <image class='Menu_play' src='../../imgs/play.png'></image>
+  <image class='top_img' src='{{item.imageKey}}'></image>
+  <!-- <image class='Menu_play' src='../../imgs/play.png'></image> -->
   <view class='info'>
-    <text class='info_name'>名字</text>
+    <text class='info_name'>{{item.ch_name}}</text>
     <text class='info_comment'>82条评论.118人喜欢</text>
-    <text class='info_content'>这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜这是一道菜</text>
+    <text class='info_content'>{{item.ch_long_intro}}</text>
   </view>
   <!-- 作者介绍 -->
   <view class='actorInfo'>
@@ -43,17 +42,63 @@
   </view>
 
   <!-- 步骤 -->
-  <view class='Menu_step'>
+  <view class='Menu_step' wx:if="{{item.step1!=''}}">
     <view class='steps'>
-      <view wx:for="{{steps}}" wx:for-item="step" wx:key="xxx">
         <view class='step_list'>
-          <text class='step_tip'>步骤/{{steps.length}}</text>
-          <image class='step_img'></image>
-          <text class='step_content'>康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明康宁全透明</text>
+          <text class='step_tip'>步骤一</text>
+          <image class='step_img' src='{{item.imageKey}}'></image>
+          <text class='step_content'>{{item.step1}}</text>
         </view>
-      </view>
     </view>
   </view>
+
+ <!-- 步骤 -->
+  <view class='Menu_step' wx:if="{{item.step2!=''}}">
+    <view class='steps'>
+        <view class='step_list'>
+          <text class='step_tip'>步骤二</text>
+          <image class='step_img' src='{{item.imageKey}}'></image>
+          <text class='step_content'>{{item.step2}}</text>
+        </view>
+    </view>
+  </view>
+
+
+ <!-- 步骤 -->
+  <view class='Menu_step' wx:if="{{item.step3!=''}}">
+    <view class='steps'>
+        <view class='step_list'>
+          <text class='step_tip'>步骤三</text>
+          <image class='step_img' src='{{item.imageKey}}'></image>
+          <text class='step_content'>{{item.step3}}</text>
+        </view>
+    </view>
+  </view>
+
+ <!-- 步骤 -->
+  <view class='Menu_step' wx:if="{{item.step4!=''}}">
+    <view class='steps'>
+        <view class='step_list'>
+          <text class='step_tip'>步骤四</text>
+          <image class='step_img' src='{{item.imageKey}}'></image>
+          <text class='step_content'>{{item.step4}}</text>
+        </view>
+    </view>
+  </view>
+
+   <!-- 步骤 -->
+  <view class='Menu_step' wx:if="{{item.step5!=''}}">
+    <view class='steps'>
+        <view class='step_list'>
+          <text class='step_tip'>步骤五</text>
+          <image class='step_img' src='{{item.imageKey}}'></image>
+          <text class='step_content'>{{item.step5}}</text>
+        </view>
+    </view>
+  </view>
+
+
+
 
   <!-- 标签 -->
   <view class='tags'>
@@ -101,25 +146,3 @@
   </view>
 
 </view>
-
-
-<!-- 底部按钮 -->
-
-  <view class='bottom_btn'>
-    <view class='share'>
-      <image class='btn_img' src='../../imgs/share.png'></image>
-      <text>分享</text>
-    </view>
-    <view class='collection'>
-      <image class='btn_img' src='../../imgs/collection.png'></image>
-      <text>收藏</text>
-    </view>
-    <view class='commments'>
-      <image class='btn_img' src='../../imgs/comment.png'></image>
-      <text>评论</text>
-    </view>
-    <view class='like'>
-      <image class='btn_img' src='../../imgs/black_unlike.png'></image>
-      <text>赞</text>
-    </view>
-  </view>

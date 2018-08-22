@@ -1,0 +1,3138 @@
+<!doctype html>
+<html lang="ch">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="QQ音乐后台管理，属于大人员的社交工具">
+    <meta name="keywords" content="QQ音乐后台管理 社交 音乐 ">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>微信小程序《美食台》后台管理</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $(".meun-item").click(function () {
+                $(".meun-item").removeClass("meun-item-active");
+                $(this).addClass("meun-item-active");
+                var itmeObj = $(".meun-item").find("img");
+                itmeObj.each(function () {
+                    var items = $(this).attr("src");
+                    items = items.replace("_grey.png", ".png");
+                    items = items.replace(".png", "_grey.png")
+                    $(this).attr("src", items);
+                });
+                var attrObj = $(this).find("img").attr("src");
+                ;
+                attrObj = attrObj.replace("_grey.png", ".png");
+                $(this).find("img").attr("src", attrObj);
+            });
+            $("#topAD").click(function () {
+                $("#topA").toggleClass(" glyphicon-triangle-right");
+                $("#topA").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $("#topBD").click(function () {
+                $("#topB").toggleClass(" glyphicon-triangle-right");
+                $("#topB").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $("#topCD").click(function () {
+                $("#topC").toggleClass(" glyphicon-triangle-right");
+                $("#topC").toggleClass(" glyphicon-triangle-bottom");
+            });
+            $(".toggle-btn").click(function () {
+                $("#leftMeun").toggleClass("show");
+                $("#rightContent").toggleClass("pd0px");
+            })
+        })
+    </script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <script src="js/Ajax.js"></script>
+    <![endif]-->
+    <!--百度插件-->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.css">
+    <script src="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.js"></script>
+    <script src="https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slide.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/flat-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.nouislider.css">
+</head>
+
+<body>
+<div id="wrap">
+    <!-- 左侧菜单栏目块 -->
+    <div class="leftMeun" id="leftMeun">
+        <!--标题-->
+        <div id="logoDiv">
+            <p id="logoP"><img id="logo" alt="左右结构项目" src="images/logo.png"><span>QQ音乐后台管理</span></p>
+        </div>
+        <!--登录-->
+        <div id="personInfor">
+            <p>
+                <a>退出登录</a>
+            </p>
+        </div>
+        <!--菜品管理模块-->
+        <div class="meun-title">菜品管理</div>
+        <div class="meun-item meun-item-active" href="#sour" aria-controls="sour" role="tab" data-toggle="tab"><img
+                    src="images/icon_source.png">资源管理
+        </div>
+        <!--食材分类管理-->
+        <div class="meun-item" href="#food_material" aria-controls="material" role="tab" data-toggle="tab" id="materialMang"><img
+                    src="images/icon_user_grey.png">食材分类管理
+        </div>
+        <!--三餐分类管理-->
+        <div class="meun-item" href="#three_meals" aria-controls="three_meals" role="tab" data-toggle="tab" id="mealsMang"><img
+                    src="images/icon_user_grey.png">三餐分类管理
+        </div>
+        <!--甜品分类管理-->
+        <div class="meun-item" href="#bread_dessert" aria-controls="bread_dessert" role="tab" data-toggle="tab" id="dessertMang"><img
+                    src="images/icon_user_grey.png">甜品分类管理
+        </div>
+        <!--菜品管理-->
+        <div class="meun-item" href="#all_food" aria-controls="all_food" role="tab" data-toggle="tab" id="foodMang"><img
+                    src="images/icon_user_grey.png">菜品管理
+        </div>
+        <!--歌曲管理-->
+        <div class="meun-item" href="#song" aria-controls="song" role="tab" data-toggle="tab" id="songMang"><img
+                    src="images/icon_change_grey.png">歌曲管理
+        </div>
+        <!--用户管理模块-->
+        <div class="meun-title">用户管理</div>
+        <!--用户管理-->
+        <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab" id="userMang"><img
+                    src="images/icon_house_grey.png">用户管理
+        </div>
+        <!--收藏管理-->
+        <div class="meun-item" href="#collect" aria-controls="collect" role="tab" data-toggle="tab" id="collectMang"><img
+                    src="images/icon_rule_grey.png">收藏管理
+        </div>
+        </div>
+    </div>
+    <!-- 右侧具体内容栏目 -->
+    <div id="rightContent">
+        <a class="toggle-btn" id="nimei">
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </a>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!--用户管理模块-->
+            <div role="tabpanel" class="tab-pane" id="user">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加用户</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2 ">
+                            用户ID号
+                        </div>
+                        <div class="col-xs-2">
+                            用户名
+                        </div>
+                        <div class="col-xs-2">
+                            密码
+                        </div>
+                        <div class="col-xs-2">
+                            头像
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="user_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加用户窗口-->
+                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="userName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">密码：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="password" class="form-control input-sm duiqi" id="password"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">身份：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi" id="identity">
+                                                    <option name="manger" value="">管理员</option>
+                                                    <option name="user" value="">用户</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="userCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="AddUser">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改用户窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除用户警告窗口-->
+                <div class="modal fade" id="deleteUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该用户？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="userCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deUserCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--食材分类管理模块-->
+            <div role="tabpanel" class="tab-pane" id="food_material">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSongList">添加食材</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2">
+                            食材类型
+                        </div>
+                        <div class="col-xs-2">
+                            食材名称
+                        </div>
+                        <div class="col-xs-2">
+                            封面
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="material_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加食材窗口-->
+                <div class="modal fade" id="addSongList" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加食材</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">歌单名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="addSongLName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">创建者 ：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi" id="creatorList">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">播放量：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="playvolume"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">封  面：</label>
+                                            <div class="col-xs-8 ">
+                                                <label class="inline" id="SongListImg">
+                                                    <div id="uploader-demo">
+                                                        <!--用来存放item-->
+                                                        <div id="fileList" class="uploader-list"></div>
+                                                        <div id="filePicker">选择图片</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songlistCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="AddsongList">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改食材窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除食材警告窗口-->
+                <div class="modal fade" id="deleteMaterial" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该食材？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="MaterialCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deMaterialCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--三餐分类管理模块-->
+            <div role="tabpanel" class="tab-pane" id="three_meals">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSongList">添加食材</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2">
+                            三餐类型
+                        </div>
+                        <div class="col-xs-2">
+                            三餐名称
+                        </div>
+                        <div class="col-xs-2">
+                            封面
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="meals_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加三餐窗口-->
+                <div class="modal fade" id="addSongList" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加食材</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">歌单名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="addSongLName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">创建者 ：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi" id="creatorList">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">播放量：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="playvolume"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">封  面：</label>
+                                            <div class="col-xs-8 ">
+                                                <label class="inline" id="SongListImg">
+                                                    <div id="uploader-demo">
+                                                        <!--用来存放item-->
+                                                        <div id="fileList" class="uploader-list"></div>
+                                                        <div id="filePicker">选择图片</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songlistCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="AddsongList">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改三餐窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除三餐警告窗口-->
+                <div class="modal fade" id="deleteMeal" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该用餐场景？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="MealsCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deMealsCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--甜品分类管理模块-->
+            <div role="tabpanel" class="tab-pane" id="bread_dessert">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSongList">添加食材</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2">
+                            甜品类型
+                        </div>
+                        <div class="col-xs-2">
+                            甜品名称
+                        </div>
+                        <div class="col-xs-2">
+                            封面
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="dessert_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加甜品窗口-->
+                <div class="modal fade" id="addSongList" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加食材</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">歌单名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="addSongLName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">创建者 ：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi" id="creatorList">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">播放量：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="playvolume"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">封  面：</label>
+                                            <div class="col-xs-8 ">
+                                                <label class="inline" id="SongListImg">
+                                                    <div id="uploader-demo">
+                                                        <!--用来存放item-->
+                                                        <div id="fileList" class="uploader-list"></div>
+                                                        <div id="filePicker">选择图片</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songlistCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="AddsongList">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改甜品窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除甜品警告窗口-->
+                <div class="modal fade" id="deleteDessert" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该甜品？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="DessertCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deDessertCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--菜品管理模块-->
+            <div role="tabpanel" class="tab-pane" id="all_food">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSongList">添加菜品</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2">
+                            菜品名称
+                        </div>
+                        <div class="col-xs-2">
+                            简介
+                        </div>
+                        <div class="col-xs-2">
+                            介绍
+                        </div>
+                        <div class="col-xs-2">
+                            菜品类型
+                        </div>
+                        <div class="col-xs-2">
+                            作者
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="food_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加菜品窗口-->
+                <div class="modal fade" id="addSongList" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加食材</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">歌单名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="addSongLName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">创建者 ：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi" id="creatorList">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">播放量：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="playvolume"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">封  面：</label>
+                                            <div class="col-xs-8 ">
+                                                <label class="inline" id="SongListImg">
+                                                    <div id="uploader-demo">
+                                                        <!--用来存放item-->
+                                                        <div id="fileList" class="uploader-list"></div>
+                                                        <div id="filePicker">选择图片</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songlistCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="AddsongList">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改菜品窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除菜品警告窗口-->
+                <div class="modal fade" id="deleteFood" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该菜品？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="FoodCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deFoodCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+
+            <!--歌曲管理模块-->
+            <div role="tabpanel" class="tab-pane" id="song">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSongs">添加歌曲</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-1">
+                            歌名
+                        </div>
+                        <div class="col-xs-1">
+                            歌手
+                        </div>
+                        <div class="col-xs-1">
+                            专辑
+                        </div>
+                        <div class="col-xs-1">
+                            时长
+                        </div>
+                        <div class="col-xs-1">
+                            封面
+                        </div>
+                        <div class="col-xs-1">
+                            所在歌单
+                        </div>
+                        <div class="col-xs-1">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="song_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加歌曲窗口-->
+                <div class="modal fade" id="addSongs" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加歌曲</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">歌曲名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi"
+                                                       placeholder="" id="songName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">歌手：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       placeholder="" id="singer">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">专辑：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi"
+                                                       placeholder="" id="albume">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">时长：</label>
+                                            <div class="col-xs-8">
+                                                <input type="time" class="form-control input-sm duiqi"
+                                                       placeholder="" id="time">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">所在歌单：</label>
+                                            <div class="col-xs-8" id="songlist">
+                                                <select class=" form-control select-duiqi" id="songlistSelect">
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">封面：</label>
+                                            <div class="col-xs-8">
+                                                <label class="inline" id="SongImg">
+                                                    <div id="uploader-demo">
+                                                        <!--用来存放item-->
+                                                        <div id="fileList" class="uploader-list"></div>
+                                                        <div id="songsPicker">选择图片</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songCanc">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green" id="songsAdd">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改歌曲窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除歌曲警告窗口-->
+                <div class="modal fade" id="deleteSongs" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该歌曲？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" >保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--收藏管理模块-->
+            <div role="tabpanel" class="tab-pane" id="collect">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加用户</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2 ">
+                            收藏ID号
+                        </div>
+                        <div class="col-xs-2">
+                            歌单
+                        </div>
+                        <div class="col-xs-2">
+                            用户
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="collect_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加收藏窗口-->
+                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">国际关系地区</option>
+                                                    <option value="">北京大学</option>
+                                                    <option value="">天津大学</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">管理员</option>
+                                                    <option value="">普通用户</option>
+                                                    <option value="">游客</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改收藏窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除收藏警告窗口-->
+                <div class="modal fade" id="deleteCollect" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该用户收藏？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="collectCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deCollectCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--标签管理模块-->
+            <div role="tabpanel" class="tab-pane" id="tag">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加用户</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2 ">
+                           歌单
+                        </div>
+                        <div class="col-xs-2">
+                            标签
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="songlistTag_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加歌单标签窗口-->
+                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">国际关系地区</option>
+                                                    <option value="">北京大学</option>
+                                                    <option value="">天津大学</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">管理员</option>
+                                                    <option value="">普通用户</option>
+                                                    <option value="">游客</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改歌单标签窗口-->
+                <div class="modal fade" id="reviseSongListTag" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除歌单标签警告窗口-->
+                <div class="modal fade" id="deleteSongListTag" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该歌单标签？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="songListTagCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deSongListTagCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!-- 资源管理模块 -->
+            <div role="tabpanel" class="tab-pane active" id="sour">
+                <div class="check-div form-inline">
+                    <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addSource">添加资源</button>
+                </div>
+                <div class="data-div">
+                    <div class="row tableHeader">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                            编码
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            名称
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <div class="tablebody">
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                1
+                            </div>
+                            <div id="topAD" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" role="button"
+                                 data-toggle="collapse" data-parent="#accordion" href="#collapseSystem"
+                                 aria-expanded="true" aria-controls="collapseOne">
+                                <span id="topA" class="glyphicon  glyphicon-triangle-bottom  "></span> <span>系统管理</span>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                /admin/system/userlist/software/
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#changeSource">
+                                    修改
+                                </button>
+                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSource">
+                                    删除
+                                </button>
+                            </div>
+                        </div>
+
+                        <!--系统管理折叠狂-->
+
+                        <div id="collapseSystem" class="collapse in" aria-expanded="true">
+                            <div class="row">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl2 ">
+                                    2
+                                </div>
+                                <div id="topBD" onClick="changeA()" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 levl2"
+                                     role="button" data-toggle="collapse" data-parent="#accordion"
+                                     href="#collapseAccount" aria-expanded="true" aria-controls="collapseOne">
+                                    <span onClick="changeB()" id="topB"
+                                          class="glyphicon glyphicon-triangle-bottom"></span> <span>歌曲管理</span>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    /rlist/
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <button class="btn btn-success btn-xs" data-toggle="modal"
+                                            data-target="#changeSource">修改
+                                    </button>
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#deleteSource">删除
+                                    </button>
+                                </div>
+                            </div>
+                            <!--用户管理折叠狂-->
+                            <div id="collapseAccount" class="collapse in" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl3 ">
+                                        1
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  levl3">
+                                        <span class=""> &nbsp;</span><span>资源管理</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                data-target="#changeSource">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                data-target="#deleteSource">删除
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  levl3 ">
+                                        2
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  levl3">
+                                        <span></span><span>权限管理</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                data-target="#changeSource">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                data-target="#deleteSource">删除
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl2 ">
+                                    3
+                                </div>
+                                <div id="topCD" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 levl2" role="button"
+                                     data-toggle="collapse" data-parent="#accordion" href="#collapseSchool"
+                                     aria-expanded="true" aria-controls="collapseOne">
+                                    <span id="topC" onClick="changeC()"
+                                          class="glyphicon glyphicon-triangle-bottom"></span><span> 地区管理</span>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    /admin/system
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <button class="btn btn-success btn-xs" data-toggle="modal"
+                                            data-target="#changeSource">修改
+                                    </button>
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                            data-target="#deleteSource">删除
+                                    </button>
+                                </div>
+                            </div>
+                            <!--地区管理折叠狂-->
+                            <div id="collapseSchool" class="collapse in" aria-expanded="true">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  levl3">
+                                        1
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4   levl3">
+                                        <span></span><span>地区管理</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                data-target="#changeSource">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                data-target="#deleteSource">删除
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl3">
+                                        2
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  levl3">
+                                        <span></span><span>规则管理</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <button class="btn btn-success btn-xs " data-toggle="modal "
+                                                data-target="#changeSource ">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs " data-toggle="modal "
+                                                data-target="#deleteSource ">删除
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 levl3 ">
+                                        3
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 levl3">
+                                        <span></span><span>人员信息</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                data-target="#changeSource">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                data-target="#deleteSource">删除
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1   levl3">
+                                        4
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  levl3">
+                                        <span></span><span>座位管理</span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                        /admin/system/userlist/software/
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                                        <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                data-target="#changeSource">修改
+                                        </button>
+                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                data-target="#deleteSource">删除
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+                <!--弹出窗口 添加资源-->
+                <div class="modal fade" id="addSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加资源</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">链接：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">排序：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">父节点：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInput1" class="col-xs-3 control-label">资源类型：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="leixing" id="anniu">菜单</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="leixing" id="meun"> 按钮</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-xs btn-white" data-dismiss="modal">取 消
+                                </button>
+                                <button type="button" class="btn btn-xs btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--修改资源 弹出窗口-->
+                <div class="modal fade" id="changeSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改资源</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">名称：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">链接：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">排序：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">父节点：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInput1" class="col-xs-3 control-label">资源类型：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="leixing" id="anniu">菜单</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="leixing" id="meun"> 按钮</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <!--弹出删除资源警告窗口-->
+                <div class="modal fade" id="deleteSource" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该资源？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-danger">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 滑块js -->
+<!--	<script type="text/javascript">
+        scale = function(btn, bar, title, unit) {
+                this.btn = document.getElementById(btn);
+                this.bar = document.getElementById(bar);
+                this.title = document.getElementById(title);
+                this.step = this.bar.getElementsByTagName("div")[0];
+                this.unit = unit;
+                this.init();
+        };
+        scale.prototype = {
+                init: function() {
+                        var f = this,
+                                g = document,
+                                b = window,
+                                m = Math;
+                        f.btn.onmousedown = function(e) {
+                                var x = (e || b.event).clientX;
+                                var l = this.offsetLeft;
+//						var max = f.bar.offsetWidth - this.offsetWidth;
+                                var max = f.bar.offsetWidth-20 ;
+                                g.onmousemove = function(e) {
+                                        var thisX = (e || b.event).clientX;
+                                        var to = m.min(max, m.max(-2, l + (thisX - x)));
+                                        f.btn.style.left = to+ 'px';
+                                        f.ondrag(m.round(m.max(0, to / max) * 100), to);
+                                        b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
+                                };
+                                g.onmouseup = new Function('this.onmousemove=null');
+                        };
+                },
+                ondrag: function(pos, x) {
+                        this.step.style.width = Math.max(0, x) +2+ 'px';
+                        this.title.innerHTML = pos / 10 + this.unit + "";
+                }
+        }
+        new scale('btn0', 'bar0', 'title0', "分钟");
+        new scale('btn1', 'bar1', 'title1', "分钟");
+        new scale('btn2', 'bar2', 'title2', "天");
+        new scale('btn3', 'bar3', 'title3', "次");
+</script>
+-->
+<script src="js/jquery.nouislider.js"></script>
+
+<!-- this page specific inline scripts -->
+<script>
+    //min/max slider
+    function huadong(my, unit, def, max) {
+        $(my).noUiSlider({
+            range: [0, max],
+            start: [def],
+            handles: 1,
+            connect: 'upper',
+            slide: function () {
+                var val = Math.floor($(this).val());
+                $(this).find(".noUi-handle").text(
+                    val + unit
+                );
+                console.log($(this).find(".noUi-handle").parent().parent().html());
+            },
+            set: function () {
+                var val = Math.floor($(this).val());
+                $(this).find(".noUi-handle").text(
+                    val + unit
+                );
+            }
+        });
+        $(my).val(def, true);
+    }
+
+    huadong('.slider-minmax1', "分钟", "5", 30);
+    huadong('.slider-minmax2', "分钟", "6", 15);
+    huadong('.slider-minmax3', "分钟", "10", 60);
+    huadong('.slider-minmax4', "次", "2", 10);
+    huadong('.slider-minmax5', "天", "3", 7);
+    huadong('.slider-minmax6', "天", "8", 10);
+</script>
+</body>
+
+<!--百度图片上传-->
+<script type="text/javascript">
+
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: 'https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf',
+
+        // 文件接收服务端。
+        server: 'upload',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 初始化Web Uploader
+    var uploadsongs = WebUploader.create({
+
+        // 选完文件后，是否自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: 'https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf',
+
+        // 文件接收服务端。
+        server: 'upload',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#songsPicker',
+
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 当有文件添加进来的时候
+    uploadsongs.on( 'fileQueued', function( file ) {
+        alert("添加了图片！");
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploadsongs.on( 'uploadSuccess', function( file ,response) {
+        //获得服务器的图片
+        var uploaImg=document.getElementById('SongImg');
+        var url = "images/songList/"+response.upload_file;
+        var img = document.createElement('img');
+        img.style.width='100px';
+        img.style.height='100px';
+        img.src=url;
+        img.setAttribute('name',response.upload_file);
+        img.setAttribute('id','songImg')
+        uploaImg.appendChild(img);
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploadsongs.on( 'uploadError', function( file ) {
+        alert("上传图片失败！");
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        console.log("上传完成");
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        alert("添加了图片！");
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file ,response) {
+        //获得服务器的图片
+        var uploaImg=document.getElementById('SongListImg');
+        var url = "images/songList/"+response.upload_file;
+        var img = document.createElement('img');
+        img.style.width='100px';
+        img.style.height='100px';
+        img.src=url;
+        img.setAttribute('name',response.upload_file);
+        img.setAttribute('id','songListImg')
+        uploaImg.appendChild(img);
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        alert("上传图片失败！");
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        console.log("上传完成");
+    });
+</script>
+<script>
+
+    //食材删除
+    function deleteMaterial(id) {
+
+        console.log("11111")
+        $('#deMaterialCheck').click(function () {
+            var url ="http://localhost:8000/deMaterial";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("material"+id).remove();
+                        $('#MaterialCancel').click();
+                    }
+                });
+        })
+    }
+
+    //三餐删除
+    function deleteMeal(id) {
+        $('#deMealsCheck').click(function () {
+            var url ="http://localhost:8000/deMeal";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("meal"+id).remove();
+                        $('#MealsCancel').click();
+                    }
+                });
+        })
+    }
+
+    //甜品删除
+    function deleteDessert(id) {
+        $('#deDessertCheck').click(function () {
+            var url ="http://localhost:8000/deDessert";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("meal"+id).remove();
+                        $('#DessertCancel').click();
+                    }
+                });
+        })
+    }
+
+    //歌曲删除
+    function deleteSongs(id){
+        $('#deSongCheck').click(function () {
+            var songId=$('#songRow').attr('data-ID');
+            var url ="http://localhost:8000/deSong";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("song"+id).remove();
+                        $('#songCancel').click();
+                    }
+                });
+        })
+    }
+
+    //用户删除
+    function deleteUser(id){
+        console.log(id)
+        // 用户删除
+        $('#deUserCheck').click(function () {
+            var url ="http://localhost:8000/deUser";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("user"+id).remove();
+                    }
+                    $('#userCancel').click();
+                });
+        })
+    }
+
+    $(function () {
+        //歌单添加的创建者列表
+        $.get("http://localhost:8000/user",function(data,status){
+            var users=JSON.parse(data).users;
+            users.forEach(function (user) {
+                //歌单添加创建者列表
+                var str2='<option value="'+user.userName+'">'+user.userName+'</option>';
+                $('#creatorList').append(str2);
+            })
+        });
+
+        //歌曲添加的歌单列表
+        $.get("http://localhost:8000/songList",function(data,status){
+            var songLists=JSON.parse(data).songLists;
+            songLists.forEach(function (songList) {
+                //歌单添加创建者列表
+                var str2='<option name="'+songList.songList_id+'"  value="'+songList.name+'">'+songList.name+'</option>';
+                $('#songlistSelect').append(str2);
+            })
+        });
+
+        //食材管理
+        $('#materialMang').click(function () {
+            $('#material_cont').children().remove();
+            var url ="http://localhost:8000/material";
+            $.get(url,function(data,status){
+                var materials=JSON.parse(data).materials;
+                materials.forEach(function (material) {
+                    var str='<div class="row" id="material'+material.id+'">' +
+                        '<div class="col-xs-2 ">'+material.type+'</div>' +
+                        '<div class="col-xs-2 ">'+material.type_name+'</div>' +
+                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+material.imageKey+'"></div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongList">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteMaterial"  onclick="deleteMaterial('+material.id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#material_cont').append(str);
+                })
+            });
+        })
+
+        //食材添加
+        $('#AddsongList').click(function () {
+
+            var songListName=$('#addSongLName').val();
+            var songListCreator=$('#creatorList').val();
+            var songListImg='images/songList/'+$('#songListImg').attr('name');
+            var playVolume=$('#playvolume').val();
+
+            var url ="http://localhost:8000/addSongList";
+            $.post(url,{
+                    name:songListName,
+                    creator:songListCreator,
+                    img:songListImg,
+                    playvolume:playVolume
+                },
+                function(data,status){
+                    var result=JSON.parse(data).result;
+                    if(result!=0){
+                        $('#songlistCanc').click();
+                        var str=' <div class="row"  id="'+result+'">' +
+                            '<div class="col-xs-2 ">'+songListName+'</div>' +
+                            '<div class="col-xs-2 ">'+songListCreator+'</div>' +
+                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+songListImg+'"></div>' +
+                            '<div class="col-xs-2 ">'+playVolume+'万</div>' +
+                            '<div class="col-xs-2">' +
+                            '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongList">修改</button>' +
+                            '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSongList" onclick="deleteSongList('+result+')">删除</button>' +
+                            '</div>' +
+                            '</div>';
+                        $('#songList_cont').append(str);
+                    }else{
+                        alert('添加失败，请重新添加！')
+
+                    }
+                });
+        })
+
+        //三餐管理
+        $('#mealsMang').click(function () {
+            console.log('1111')
+            $('#meals_cont').children().remove();
+            var url ="http://localhost:8000/meals";
+            $.get(url,function(data,status){
+                var meals=JSON.parse(data).meals;
+                meals.forEach(function (meal) {
+                    var str='<div class="row" id="meal'+meal.id+'">' +
+                        '<div class="col-xs-2 ">'+meal.type+'</div>' +
+                        '<div class="col-xs-2 ">'+meal.type_name+'</div>' +
+                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+meal.imageKey+'"></div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongList">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteMeal"  onclick="deleteMeal('+meal.id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#meals_cont').append(str);
+                })
+            });
+        })
+
+        //甜品管理
+        $('#dessertMang').click(function () {
+            console.log('1111')
+            $('#dessert_cont').children().remove();
+            var url ="http://localhost:8000/desserts";
+            $.get(url,function(data,status){
+                var desserts=JSON.parse(data).desserts;
+                desserts.forEach(function (dessert) {
+                    var str='<div class="row" id="meal'+dessert.id+'">' +
+                        '<div class="col-xs-2 ">'+dessert.type+'</div>' +
+                        '<div class="col-xs-2 ">'+dessert.type_name+'</div>' +
+                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+dessert.imageKey+'"></div>'+
+                        '<div class="col-xs-2">'+
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseDessert">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteDessert"  onclick="deleteDessert('+dessert.id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#dessert_cont').append(str);
+                })
+            });
+        })
+
+        //菜品管理
+        $('#foodMang').click(function () {
+            console.log('1111')
+            $('#food_cont').children().remove();
+            var url ="http://localhost:8000/desserts";
+            $.get(url,function(data,status){
+                var foods=JSON.parse(data).foods;
+                foods.forEach(function (food) {
+                    var str='<div class="row" id="meal'+food.id+'">' +
+                        '<div class="col-xs-2 ">'+food.type+'</div>' +
+                        '<div class="col-xs-2 ">'+food.type_name+'</div>' +
+                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+dessert.imageKey+'"></div>'+
+                        '<div class="col-xs-2">'+
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseDessert">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteDessert"  onclick="deleteDessert('+dessert.id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#food_cont').append(str);
+                })
+            });
+        })
+
+        //歌曲管理
+        $('#songMang').click(function () {
+            $('#song_cont').children().remove();
+            var url ="http://localhost:8000/songs";
+            $.get(url,function(data,status){
+                var songs=JSON.parse(data).songs;
+                songs.forEach(function (song) {
+                    var str=' <div class="row"  id="song'+song.song_id+'">' +
+                        '<div class="col-xs-1 ">'+song.songName+'</div>' +
+                        '<div class="col-xs-1 ">'+song.singer+'</div>' +
+                        '<div class="col-xs-1 ">'+song.album+'</div>' +
+                        '<div class="col-xs-1 ">'+song.time+'</div>' +
+                        '<div class="col-xs-1 "><img width="50px" height="50px" src="'+song.imgUrl+'"></div>' +
+                        '<div class="col-xs-1 ">'+song.name+'</div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongs">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSongs" onclick="deleteSongs('+song.song_id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#song_cont').append(str);
+                })
+            });
+        })
+
+        // 歌曲添加
+        $('#songsAdd').click(function () {
+            var songName=$('#songName').val();
+            var singer=$('#singer').val();
+            var albume=$('#albume').val();
+            var songImg='images/songList/'+$('#songImg').attr('name');
+            var time=$('#time').val();
+            // 获得select选中的option的id值
+            var songlist= $(":selected","#songlistSelect").attr("name");
+            var url ="http://localhost:8000/addSong";
+            $.post(url,{
+                    songName:songName,
+                    singer:singer,
+                    albume:albume,
+                    songImg:songImg,
+                    time:time,
+                    songlist:songlist
+                },
+                function(data,status){
+                    var result=JSON.parse(data).result;
+                    if(result!=0){
+                        $('#songCanc').click();
+                        var str=' <div class="row"  id="song'+result+'">' +
+                            '<div class="col-xs-1 ">'+songName+'</div>' +
+                            '<div class="col-xs-1 ">'+singer+'</div>' +
+                            '<div class="col-xs-1 ">'+albume+'</div>' +
+                            '<div class="col-xs-1 ">'+time+'</div>' +
+                            '<div class="col-xs-1 "><img width="50px" height="50px" src="'+songImg+'"></div>' +
+                            '<div class="col-xs-1 ">'+songlist+'</div>' +
+                            '<div class="col-xs-2">' +
+                            '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongs">修改</button>' +
+                            '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSongs" onclick="deleteSongs('+result+')">删除</button>' +
+                            '</div>' +
+                            '</div>';
+                        $('#song_cont').append(str);
+                    }else{
+                        alert('添加失败，请重新添加！')
+
+                    }
+                });
+        })
+
+        //用户管理
+        $('#userMang').click(function () {
+            $('#user_cont').children().remove();
+            var url ="http://localhost:8000/user";
+            $.get(url,function(data,status){
+                var users=JSON.parse(data).users;
+                users.forEach(function (user) {
+                    var str=' <div class="row"   id=user'+user.user_id+'>' +
+                        '<div class="col-xs-2 ">'+user.user_id+'</div>' +
+                        '<div class="col-xs-2 ">'+user.user_name+'</div>' +
+                        '<div class="col-xs-2 ">'+user.user_passwd+'</div>' +
+                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+user.user_pic+'"></div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseUser">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteUser" onclick="deleteUser('+user.user_id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#user_cont').append(str);
+
+                })
+            });
+        })
+
+        // 用户添加
+        $('#AddUser').click(function () {
+
+            var userName=$('#userName').val();
+            var password=$('#password').val();
+            var identity=$(":selected","#identity").attr("name");
+            var url ="http://localhost:8000/addUser";
+            $.post(url,{
+                    userName:userName,
+                    password:password,
+                    identity:identity
+                },
+                function(data,status){
+                    var result=JSON.parse(data).result;
+                    if(result!=0){
+                        $('#userCanc').click();
+                        var str=' <div class="row" id="user'+result+'">' +
+                            '<div class="col-xs-2 ">'+result+'</div>' +
+                            '<div class="col-xs-2 ">'+userName+'</div>' +
+                            '<div class="col-xs-2 ">'+password+'</div>' +
+                            '<div class="col-xs-2 ">'+identity+'</div>' +
+                            '<div class="col-xs-2">' +
+                            '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseUser">修改</button>' +
+                            '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteUser" onclick="deleteUser('+result+')">删除</button>' +
+                            '</div>' +
+                            '</div>';
+                        $('#user_cont').append(str);
+                    }else{
+                        alert('添加失败，请重新添加！')
+
+                    }
+                });
+        })
+
+        //收藏管理
+        $('#collectMang').click(function () {
+            $('#collect_cont').children().remove();
+            var url ="http://localhost:8000/collect";
+            $.get(url,function(data,status){
+                var collects=JSON.parse(data).collects;
+                collects.forEach(function (collect) {
+                    var str=' <div class="row" id="collectRow" data-ID="'+collect.collect_id+'">' +
+                        '<div class="col-xs-2 ">'+collect.collect_id+'</div>' +
+                        '<div class="col-xs-2 ">'+collect.name+'</div>' +
+                        '<div class="col-xs-2 ">'+collect.userName+'</div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseCollect">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteCollect">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#collect_cont').append(str);
+                })
+            });
+        })
+
+        // 用户收藏删除
+        $('#deCollectCheck').click(function () {
+            var collectId=$('#collectRow').attr('data-ID');
+            var url ="http://localhost:8000/deCollect";
+            $.post(url,{
+                    id:collectId
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        $('#collectCancel').click();
+                        $('#collectRow').remove();
+                    }
+                });
+        })
+
+        //标签管理
+        $('#tagMang').click(function () {
+            $('#songlistTag_cont').children().remove();
+            var url ="http://localhost:8000/songListTag";
+            $.get(url,function(data,status){
+                var songListTags=JSON.parse(data).songListTags;
+                songListTags.forEach(function (songListTag) {
+                    var str=' <div class="row" id="songListTagRow" data-ID="'+songListTag.id+'">' +
+                        '<div class="col-xs-2 ">'+songListTag.id+'</div>' +
+                        '<div class="col-xs-2 ">'+songListTag.name+'</div>' +
+                        '<div class="col-xs-2 ">'+songListTag.tagName+'</div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseSongListTag">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteSongListTag">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#songlistTag_cont').append(str);
+                })
+            });
+        })
+
+        // 标签删除
+        $('#deSongListTagCheck').click(function () {
+            var songListTagId=$('#songListTagRow').attr('data-ID');
+            var url ="http://localhost:8000/deSongListTag";
+            $.post(url,{
+                    id:songListTagId
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        $('#songListTagCancel').click();
+                        $('#songListTagRow').remove();
+                    }
+                });
+        })
+
+    })
+
+
+</script>
+
+</html>

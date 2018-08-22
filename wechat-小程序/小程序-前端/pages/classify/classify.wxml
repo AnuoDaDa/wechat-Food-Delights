@@ -11,15 +11,42 @@
   <view>
     <view class='classify-title'>根据食材查找菜谱</view>
     <!-- 列表 -->
-    <view  class='material'>
-      <view wx:for="{{materials}}" wx:for-item="material" wx:key="xxx">
+    <view class='material'>
+      <view wx:for="{{foodType}}" wx:key="unique">
         <view class='material_item'>
-          <image class='material_img' bindtap="bindViewTap"></image>
-          <text>name</text>
+          <image class='material_img' data-type="{{item.type}}"  bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <text>{{item.type_name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 一日三餐 -->
+  <view>
+    <view class='classify-title'>一日三餐</view>
+    <!-- 列表 -->
+    <view class='material'>
+      <view wx:for="{{threeMeals}}" wx:key="unique">
+        <view class='material_item'>
+          <image class='material_img' data-type="{{item.type}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <text>{{item.type_name}}</text>
         </view>
       </view>
     </view>
   </view>
 
 
+    <!-- 面包甜点 -->
+  <view>
+    <view class='classify-title'>面包甜点</view>
+    <!-- 列表 -->
+    <view class='material'>
+      <view wx:for="{{breadDessert}}" wx:key="unique">
+        <view class='material_item'>
+          <image class='material_img' data-type="{{item.type}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <text>{{item.type_name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

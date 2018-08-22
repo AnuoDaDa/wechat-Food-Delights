@@ -1,4 +1,6 @@
 // pages/Menu/menu.js
+
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -15,10 +17,14 @@ Page({
 
   /* 生命周期函数--监听页面加载 */
   onLoad: function(options) {
-    this.setData({
-      // 页面初始化 options为页面跳转所带来的参数
-      title: options.title
-    })
+    console.log(options.id);
+    var that = this;
+    util.ask('step', function(data1) {
+      that.setData({
+        thisFood: data1.food,
+        foodId: options.id
+      });
+    });
   },
 
   /**
