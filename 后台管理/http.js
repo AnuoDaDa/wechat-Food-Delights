@@ -168,6 +168,129 @@ app.post('/deDessert', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
+//菜品查询
+app.get('/foods', function (req, res) {
+    //链接数据库
+    food = new Wechat();
+    food.init();
+    //取出数据
+    var sql = "select all_food.ch_id,all_food.ch_name,all_food.ch_short_intro,all_food.ch_long_intro,"+
+        "all_food.type,all_food.ch_url,users.user_name from all_food , users where "+
+    "all_food.user_id=users.user_id";
+    food.queryAll(sql, function (foods) {
+        var response={
+            foods:foods
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
+//菜品简介
+app.post('/intros', function (req, res) {
+    var id=req.body.id;
+    //链接数据库
+    food = new Wechat();
+    food.init();
+    //取出数据
+    var sql = "select ch_short_intro,ch_long_intro from all_food where ch_id="+id;
+    food.queryAll(sql, function (food) {
+        var response={
+            intro:food[0]
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
+//菜品删除
+app.post('/deFood', function (req, res) {
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    food = new Wechat();
+    food.init();
+    //取出数据
+    var sql = "delete from all_food where ch_id="+id;
+    if(!food.delete(sql)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+
+    res.end(JSON.stringify(response));
+});
+
+//收藏查询
+app.get('/collect', function (req, res) {
+    //链接数据库
+    collects = new Wechat();
+    collects.init();
+    //取出数据
+    var sql = "select collect.collect_id, users.user_name,all_food.ch_name from collect,users,all_food where collect.user_id=users.user_id and collect.ch_id=all_food.ch_id";
+    collects.queryAll(sql, function (collects) {
+        var response={
+            collects:collects
+        }
+
+        res.end(JSON.stringify(response));
+    });
+});
+
+//用户收藏删除
+app.post('/deCollect', function (req, res) {
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    collect = new Wechat();
+    collect.init();
+    //取出数据
+    var sql = "delete from collect where collect_id="+id;
+    if(!collect.delete(sql)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+
+    res.end(JSON.stringify(response));
+});
+
+//评论查询
+app.get('/comment', function (req, res) {
+    //链接数据库
+    comments = new Wechat();
+    comments.init();
+    //取出数据
+    var sql = "select comments.comment_id,users.user_name,all_food.ch_name,comment_cont from comments,users,all_food where comments.user_id=users.user_id and comments.ch_id=all_food.ch_id";
+    comments.queryAll(sql, function (comments) {
+        var response={
+            comments:comments
+        }
+
+        res.end(JSON.stringify(response));
+    });
+});
+
+//评论内容查询
+app.post('/comment_dis', function (req, res) {
+    var id=req.body.id;
+    //链接数据库
+    comment = new Wechat();
+    comment.init();
+    //取出数据
+    var sql = "select comment_cont from comments where comments.comment_id="+id;
+    comment.queryAll(sql, function (comment) {
+        var response={
+            content:comment[0]
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
 //歌曲查询
 app.get('/songs', function (req, res) {
     //链接数据库
@@ -292,42 +415,6 @@ app.post('/addUser', function (req, res) {
     })
 });
 
-//收藏查询
-app.get('/collect', function (req, res) {
-    //链接数据库
-    collects = new Wechat();
-    collects.init();
-    //取出数据
-    var sql = "select collect.collect_id, songlist.name,user.userName from collect,songlist,user where collect.songList_id=songList.songList_id and collect.user_id=user.user_id";
-    collects.queryAll(sql, function (collects) {
-        var response={
-            collects:collects
-        }
-
-        res.end(JSON.stringify(response));
-    });
-});
-
-//用户收藏删除
-app.post('/deCollect', function (req, res) {
-    var id=req.body.id;
-    var result;
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "delete from collect where collect_id="+id;
-    if(!songList.delete(sql)){
-        result=1;
-    }else{
-        result=0;
-    }
-    var response={
-        result:result
-    }
-
-    res.end(JSON.stringify(response));
-});
 
 //标签查询
 app.get('/songListTag', function (req, res) {

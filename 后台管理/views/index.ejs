@@ -64,6 +64,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/flat-ui.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery.nouislider.css">
+
+    <style>
+        .font {
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
@@ -101,6 +107,16 @@
         <div class="meun-item" href="#all_food" aria-controls="all_food" role="tab" data-toggle="tab" id="foodMang"><img
                     src="images/icon_user_grey.png">菜品管理
         </div>
+        <!--收藏管理-->
+        <div class="meun-item" href="#collect" aria-controls="collect" role="tab" data-toggle="tab" id="collectMang"><img
+                    src="images/icon_rule_grey.png">收藏管理
+        </div>
+        <!--收藏管理-->
+        <div class="meun-item" href="#comment" aria-controls="comment" role="tab" data-toggle="tab" id="commentMang"><img
+                    src="images/icon_rule_grey.png">评论管理
+        </div>
+
+
         <!--歌曲管理-->
         <div class="meun-item" href="#song" aria-controls="song" role="tab" data-toggle="tab" id="songMang"><img
                     src="images/icon_change_grey.png">歌曲管理
@@ -111,10 +127,7 @@
         <div class="meun-item" href="#user" aria-controls="user" role="tab" data-toggle="tab" id="userMang"><img
                     src="images/icon_house_grey.png">用户管理
         </div>
-        <!--收藏管理-->
-        <div class="meun-item" href="#collect" aria-controls="collect" role="tab" data-toggle="tab" id="collectMang"><img
-                    src="images/icon_rule_grey.png">收藏管理
-        </div>
+
         </div>
     </div>
     <!-- 右侧具体内容栏目 -->
@@ -1096,21 +1109,24 @@
                 <!--列表-->
                 <div class="data-div">
                     <!--表头-->
-                    <div class="row tableHeader">
-                        <div class="col-xs-2">
+                    <div class="row tableHeader" >
+                        <div class="col-xs-1">
                             菜品名称
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-1">
                             简介
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-1">
                             介绍
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-1">
                             菜品类型
                         </div>
-                        <div class="col-xs-2">
+                        <div class="col-xs-1">
                             作者
+                        </div>
+                        <div class="col-xs-1">
+                            图片
                         </div>
                         <div class="col-xs-2">
                             操作
@@ -1305,6 +1321,577 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="FoodCancel">取 消</button>
                                 <button type="button" class="btn  btn-xs btn-danger" id="deFoodCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--菜品简介-->
+                <div class="modal fade" id="foods_short_intro" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">内容</h4>
+                            </div>
+                            <div class="modal-body" id="intro">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" onclick="deleteIntro()">关闭</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+
+            </div>
+            <!--收藏管理模块-->
+            <div role="tabpanel" class="tab-pane" id="collect">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加收藏</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2 ">
+                            收藏ID号
+                        </div>
+                        <div class="col-xs-2">
+                            用户
+                        </div>
+                        <div class="col-xs-2">
+                            菜品
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="collect_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加收藏窗口-->
+                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">国际关系地区</option>
+                                                    <option value="">北京大学</option>
+                                                    <option value="">天津大学</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">管理员</option>
+                                                    <option value="">普通用户</option>
+                                                    <option value="">游客</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改收藏窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除收藏警告窗口-->
+                <div class="modal fade" id="deleteCollect" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该用户收藏？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="collectCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deCollectCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+            </div>
+            <!--评论管理模块-->
+            <div role="tabpanel" class="tab-pane" id="comment">
+                <!--头部-->
+                <div class="check-div form-inline">
+                    <div class="col-xs-3">
+                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加收藏</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
+                        <button class="btn btn-white btn-xs ">查 询</button>
+                    </div>
+                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
+                        <label for="paixu">排序:&nbsp;</label>
+                        <select class=" form-control">
+                            <option>地区</option>
+                            <option>地区</option>
+                            <option>班期</option>
+                            <option>性别</option>
+                            <option>年龄</option>
+                            <option>份数</option>
+                        </select>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="data-div">
+                    <!--表头-->
+                    <div class="row tableHeader">
+                        <div class="col-xs-2 ">
+                            评论ID号
+                        </div>
+                        <div class="col-xs-2">
+                            用户
+                        </div>
+                        <div class="col-xs-2">
+                            菜品
+                        </div>
+                        <div class="col-xs-2">
+                            评论内容
+                        </div>
+                        <div class="col-xs-2">
+                            操作
+                        </div>
+                    </div>
+                    <!--列表内容-->
+                    <div class="tablebody" id="comment_cont">
+                    </div>
+                </div>
+                <!--页码块-->
+                <footer class="footer">
+                    <ul class="pagination">
+                        <li>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            页
+                        </li>
+                        <li class="gray">
+                            共20页
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-left">
+                            </i>
+                        </li>
+                        <li>
+                            <i class="glyphicon glyphicon-menu-right">
+                            </i>
+                        </li>
+                    </ul>
+                </footer>
+
+                <!--弹出添加收藏窗口-->
+                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">国际关系地区</option>
+                                                    <option value="">北京大学</option>
+                                                    <option value="">天津大学</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <select class=" form-control select-duiqi">
+                                                    <option value="">管理员</option>
+                                                    <option value="">普通用户</option>
+                                                    <option value="">游客</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出修改收藏窗口-->
+                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form class="form-horizontal">
+                                        <div class="form-group ">
+                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="email" class="form-control input-sm duiqi" id="sName"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
+                                            <div class="col-xs-8 ">
+                                                <input type="" class="form-control input-sm duiqi" id="sLink"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
+                                            <div class="col-xs-8">
+                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
+                                            <div class="col-xs-8">
+                                                <label class="control-label" for="anniu">
+                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="control-label" for="meun">
+                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
+                                <button type="button" class="btn btn-xs btn-green">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出删除收藏警告窗口-->
+                <div class="modal fade" id="deleteComment" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    确定要删除该用户评论？删除后不可恢复！
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="commentCancel">取 消</button>
+                                <button type="button" class="btn  btn-xs btn-danger" id="deCommentCheck">保 存</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <!--弹出评论内容窗口-->
+                <div class="modal fade" id="commentContent" role="dialog" aria-labelledby="gridSystemModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
+                            </div>
+                            <div class="modal-body" id="comment_Cont">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" onclick="deleteContent()">关 闭</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
@@ -1576,268 +2163,7 @@
                 <!-- /.modal -->
 
             </div>
-            <!--收藏管理模块-->
-            <div role="tabpanel" class="tab-pane" id="collect">
-                <!--头部-->
-                <div class="check-div form-inline">
-                    <div class="col-xs-3">
-                        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addUser">添加用户</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <input type="text" class="form-control input-sm" placeholder="输入文字搜索">
-                        <button class="btn btn-white btn-xs ">查 询</button>
-                    </div>
-                    <div class="col-lg-3 col-lg-offset-2 col-xs-4" style=" padding-right: 40px;text-align: right;">
-                        <label for="paixu">排序:&nbsp;</label>
-                        <select class=" form-control">
-                            <option>地区</option>
-                            <option>地区</option>
-                            <option>班期</option>
-                            <option>性别</option>
-                            <option>年龄</option>
-                            <option>份数</option>
-                        </select>
-                    </div>
-                </div>
-                <!--列表-->
-                <div class="data-div">
-                    <!--表头-->
-                    <div class="row tableHeader">
-                        <div class="col-xs-2 ">
-                            收藏ID号
-                        </div>
-                        <div class="col-xs-2">
-                            歌单
-                        </div>
-                        <div class="col-xs-2">
-                            用户
-                        </div>
-                        <div class="col-xs-2">
-                            操作
-                        </div>
-                    </div>
-                    <!--列表内容-->
-                    <div class="tablebody" id="collect_cont">
-                    </div>
-                </div>
-                <!--页码块-->
-                <footer class="footer">
-                    <ul class="pagination">
-                        <li>
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </select>
-                            页
-                        </li>
-                        <li class="gray">
-                            共20页
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-left">
-                            </i>
-                        </li>
-                        <li>
-                            <i class="glyphicon glyphicon-menu-right">
-                            </i>
-                        </li>
-                    </ul>
-                </footer>
 
-                <!--弹出添加收藏窗口-->
-                <div class="modal fade" id="addUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">添加用户</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
-                                            <div class="col-xs-8">
-                                                <select class=" form-control select-duiqi">
-                                                    <option value="">国际关系地区</option>
-                                                    <option value="">北京大学</option>
-                                                    <option value="">天津大学</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
-                                            <div class="col-xs-8">
-                                                <select class=" form-control select-duiqi">
-                                                    <option value="">管理员</option>
-                                                    <option value="">普通用户</option>
-                                                    <option value="">游客</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
-                                            <div class="col-xs-8">
-                                                <label class="control-label" for="anniu">
-                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label class="control-label" for="meun">
-                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!--弹出修改收藏窗口-->
-                <div class="modal fade" id="reviseUser" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">修改用户</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <form class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="sName" class="col-xs-3 control-label">用户名：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="email" class="form-control input-sm duiqi" id="sName"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sLink" class="col-xs-3 control-label">真实姓名：</label>
-                                            <div class="col-xs-8 ">
-                                                <input type="" class="form-control input-sm duiqi" id="sLink"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sOrd" class="col-xs-3 control-label">电子邮箱：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sOrd"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">电话：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">地区：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sKnot" class="col-xs-3 control-label">权限：</label>
-                                            <div class="col-xs-8">
-                                                <input type="" class="form-control input-sm duiqi" id="sKnot"
-                                                       placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="situation" class="col-xs-3 control-label">状态：</label>
-                                            <div class="col-xs-8">
-                                                <label class="control-label" for="anniu">
-                                                    <input type="radio" name="situation" id="normal">正常</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label class="control-label" for="meun">
-                                                    <input type="radio" name="situation" id="forbid"> 禁用</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
-                                <button type="button" class="btn btn-xs btn-green">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!--弹出删除收藏警告窗口-->
-                <div class="modal fade" id="deleteCollect" role="dialog" aria-labelledby="gridSystemModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    确定要删除该用户收藏？删除后不可恢复！
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-xs btn-white" data-dismiss="modal" id="collectCancel">取 消</button>
-                                <button type="button" class="btn  btn-xs btn-danger" id="deCollectCheck">保 存</button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-            </div>
             <!--标签管理模块-->
             <div role="tabpanel" class="tab-pane" id="tag">
                 <!--头部-->
@@ -2784,6 +3110,94 @@
         })
     }
 
+    // 菜品简介展示
+    function ShortIntro(id) {
+        console.log(id)
+        var url ="http://localhost:8000/intros";
+        $.post(url,{
+                id:id
+            },
+            function(data,status){
+                var food=JSON.parse(data).intro;
+                var str='<div class="container-fluid" >'+food.ch_short_intro+'</div>'
+                $('#intro').append(str);
+            });
+    }
+
+    // 菜品介绍展示
+    function LongIntro(id) {
+        console.log(id)
+        var url ="http://localhost:8000/intros";
+        $.post(url,{
+                id:id
+            },
+            function(data,status){
+                var food=JSON.parse(data).intro;
+                var str='<div class="container-fluid" >'+food.ch_long_intro+'</div>'
+                $('#intro').append(str);
+
+            });
+    }
+    function deleteIntro(){
+        $('#intro').children().remove();
+    }
+
+    //删除菜品
+    function deleteFood(id){
+        $('#deFoodCheck').click(function () {
+            var url ="http://localhost:8000/deFood";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        document.getElementById("food"+id).remove();
+                    }
+                    $('#FoodCancel').click();
+                });
+        })
+    }
+
+    //删除收藏
+    function deleteCollect(id) {
+        // 用户收藏删除
+        $('#deCollectCheck').click(function () {
+            var url ="http://localhost:8000/deCollect";
+            $.post(url,{
+                    id:id
+                },
+                function(data,status){
+                    var result=JSON.parse(data);
+                    if(result==1){
+                        alert("删除失败，请重新删除！")
+                    }else{
+                        $('#collectCancel').click();
+                        document.getElementById("collectRow"+id).remove();
+                    }
+                });
+        })
+    }
+
+    // 评论内容展示
+    function commentDisplay(id) {
+        console.log(id)
+        var url ="http://localhost:8000/comment_dis";
+        $.post(url,{
+                id:id
+            },
+            function(data,status){
+                var comment=JSON.parse(data).content;
+                var str='<div class="container-fluid" >'+comment.comment_cont+'</div>'
+                $('#comment_Cont').append(str);
+            });
+    }
+    function deleteContent(){
+        $('#comment_Cont').children().remove();
+    }
+
     $(function () {
         //歌单添加的创建者列表
         $.get("http://localhost:8000/user",function(data,status){
@@ -2909,22 +3323,69 @@
 
         //菜品管理
         $('#foodMang').click(function () {
-            console.log('1111')
             $('#food_cont').children().remove();
-            var url ="http://localhost:8000/desserts";
+            $('#short_intro').children().remove();
+            $('#long_intro').children().remove();
+            var url ="http://localhost:8000/foods";
             $.get(url,function(data,status){
                 var foods=JSON.parse(data).foods;
                 foods.forEach(function (food) {
-                    var str='<div class="row" id="meal'+food.id+'">' +
-                        '<div class="col-xs-2 ">'+food.type+'</div>' +
-                        '<div class="col-xs-2 ">'+food.type_name+'</div>' +
-                        '<div class="col-xs-2 "><img width="50px" height="50px" src="'+dessert.imageKey+'"></div>'+
+                    var str='<div class="row" id="food'+food.ch_id+'">' +
+                        '<div class="col-xs-1 font">'+food.ch_name+'</div>' +
+                        '<div class="col-xs-1 font" data-toggle="modal" data-target="#foods_short_intro" onclick="ShortIntro('+food.ch_id+')">查看详情</div>' +
+                        '<div class="col-xs-1 font" data-toggle="modal" data-target="#foods_short_intro" onclick="LongIntro('+food.ch_id+')" >查看详情</div>' +
+                        '<div class="col-xs-1 font">'+food.type+'</div>' +
+                        '<div class="col-xs-1 font">'+food.user_name+'</div>' +
+                        '<div class="col-xs-1 "><img width="50px" height="50px" src="'+food.ch_name+'"></div>'+
                         '<div class="col-xs-2">'+
-                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseDessert">修改</button>' +
-                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteDessert"  onclick="deleteDessert('+dessert.id+')">删除</button>' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseFood">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal"  data-target="#deleteFood"  onclick="deleteFood('+food.ch_id+')">删除</button>' +
                         '</div>' +
                         '</div>';
                     $('#food_cont').append(str);
+                })
+            });
+        })
+
+        //收藏管理
+        $('#collectMang').click(function () {
+            $('#collect_cont').children().remove();
+            var url ="http://localhost:8000/collect";
+            $.get(url,function(data,status){
+                var collects=JSON.parse(data).collects;
+                collects.forEach(function (collect) {
+                    var str=' <div class="row" id="collectRow'+collect.collect_id+'" >' +
+                        '<div class="col-xs-2 ">'+collect.collect_id+'</div>' +
+                        '<div class="col-xs-2 ">'+collect.user_name+'</div>' +
+                        '<div class="col-xs-2 ">'+collect.ch_name+'</div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseCollect">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteCollect" onclick="deleteCollect('+collect.collect_id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#collect_cont').append(str);
+                })
+            });
+        })
+
+        //评论管理
+        $('#commentMang').click(function () {
+            $('#comment_cont').children().remove();
+            var url ="http://localhost:8000/comment";
+            $.get(url,function(data,status){
+                var comments=JSON.parse(data).comments;
+                comments.forEach(function (comment) {
+                    var str=' <div class="row" id="comment'+comment.comment_id+'" >' +
+                        '<div class="col-xs-2 ">'+comment.comment_id+'</div>' +
+                        '<div class="col-xs-2 ">'+comment.user_name+'</div>' +
+                        '<div class="col-xs-2 ">'+comment.ch_name+'</div>' +
+                        '<div class="col-xs-2 " data-toggle="modal"  data-target="#commentContent" onclick="commentDisplay('+comment.comment_id+')">查看详情</div>' +
+                        '<div class="col-xs-2">' +
+                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseCollect">修改</button>' +
+                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteComment" onclick="deleteCollect('+comment.comment_id+')">删除</button>' +
+                        '</div>' +
+                        '</div>';
+                    $('#comment_cont').append(str);
                 })
             });
         })
@@ -3048,45 +3509,6 @@
                     }else{
                         alert('添加失败，请重新添加！')
 
-                    }
-                });
-        })
-
-        //收藏管理
-        $('#collectMang').click(function () {
-            $('#collect_cont').children().remove();
-            var url ="http://localhost:8000/collect";
-            $.get(url,function(data,status){
-                var collects=JSON.parse(data).collects;
-                collects.forEach(function (collect) {
-                    var str=' <div class="row" id="collectRow" data-ID="'+collect.collect_id+'">' +
-                        '<div class="col-xs-2 ">'+collect.collect_id+'</div>' +
-                        '<div class="col-xs-2 ">'+collect.name+'</div>' +
-                        '<div class="col-xs-2 ">'+collect.userName+'</div>' +
-                        '<div class="col-xs-2">' +
-                        '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseCollect">修改</button>' +
-                        '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteCollect">删除</button>' +
-                        '</div>' +
-                        '</div>';
-                    $('#collect_cont').append(str);
-                })
-            });
-        })
-
-        // 用户收藏删除
-        $('#deCollectCheck').click(function () {
-            var collectId=$('#collectRow').attr('data-ID');
-            var url ="http://localhost:8000/deCollect";
-            $.post(url,{
-                    id:collectId
-                },
-                function(data,status){
-                    var result=JSON.parse(data);
-                    if(result==1){
-                        alert("删除失败，请重新删除！")
-                    }else{
-                        $('#collectCancel').click();
-                        $('#collectRow').remove();
                     }
                 });
         })
