@@ -97,7 +97,7 @@
       <view class="page-section-spacing">
         <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
 
-          <view id="demo1" class="scroll-view-item_H demo-text-1" wx:for="{{allFood}}">
+          <view id="demo1" class="scroll-view-item_H demo-text-1" wx:for="{{allFood}}" wx:key="unique">
             <image class='specialImage' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.imageKey}}'></image>
             <view class='dishWords'>
               <text>{{item.ch_name}}</text>

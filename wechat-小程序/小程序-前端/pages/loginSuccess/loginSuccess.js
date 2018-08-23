@@ -10,25 +10,38 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     likeImg:"../../imgs/like.png"
   },
-  likeChange:function(e){
+  likeChange:function(event){
     // console.log(e.currentTarget.id);
-    wx.request({
-      url: 'http://localhost:6032/DeleteLikes',
-      method: 'POST',
-      data: {
-        id: e.currentTarget.id
-      },
-      header: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
+    wx.getStorage({
+      key: 'key',
       success: function (res) {
-        console.log(res.data);
+        // 异步接口在success回调才能拿到返回值
+        var user_id = JSON.parse(res.data)
+        console.log(user_id);
+        wx.request({
+          url: 'http://localhost:6032/UpdateLikes',
+          method: 'POST',
+          data: {
+            id: event.currentTarget.dataset.id,
+            user: user_id
+          },
+          header: {
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          success: function (res) {
+            wx.showToast({
+              title: "取消成功",
+              duration: 1000,
+              icon: "sucess",
+              make: true
+            })
+          }
+        })
+      },
+      fail: function () {
+        console.log('读取key1发生错误')
       }
     });
-    this.setData({
-      likeImg: "../../imgs/unlike.png"
-    })
-
   },
   onLoad: function() {
     // console.log(options.type);
