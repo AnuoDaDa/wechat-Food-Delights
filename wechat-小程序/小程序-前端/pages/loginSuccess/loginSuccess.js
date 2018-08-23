@@ -14,11 +14,11 @@ Page({
   onLoad: function() {
     // console.log(options.type);
     var that = this;
-    util.ask('likes', function(data1) {
-      that.setData({
-        likes: data1.food,
-      });
-    });
+    // util.ask('likes', function(data1) {
+    //   that.setData({
+    //     likes: data1.food,
+    //   });
+    // });
     if (app.globalData.userInfo) {
       this.setData({
           userInfo: app.globalData.userInfo,
@@ -106,14 +106,32 @@ Page({
   },
   //点击切换，滑块index赋值
   checkCurrent: function(e) {
-    // console.log(e.target.dataset.nickname);
     var that = this;
-    util.ask('likes', function(data1){
-      that.setData({
-        likes: data1.food,
-        nickName: e.target.dataset.nickname
-      });
-    });
+    // console.log(e.target.dataset.nickname);
+    wx.getStorage({
+      key: 'key',
+      success: function (res) {
+        // 异步接口在success回调才能拿到返回值
+        var user_id = JSON.parse(res.data)
+        console.log(user_id);
+        // console.log(event.currentTarget.id);
+       
+        util.ask('likes', function (data1) {
+          that.setData({
+            likes: data1.food,
+            nickName: user_id
+          });
+        });
+      },
+      fail: function () {
+        console.log('读取key1发生错误')
+      }
+    })
+
+
+
+    
+    
     // const that = this;
     if (that.data.currentData === e.target.dataset.current) {
       return false;

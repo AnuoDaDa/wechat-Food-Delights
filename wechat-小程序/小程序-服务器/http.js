@@ -329,6 +329,52 @@ app.post("/insertFoodStep", function (req, res) {
         });
     console.log(req.body);
 });
+//遍历喜欢的食物
+app.get("/likes", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    //1, 引入腾讯模块
+    var BannerUtil = require('./util/BannerUtil');
+    //2,创建对象
+    BannerUtil = new BannerUtil();
+    BannerUtil.init();
+    imageUtil.queryLikes(function (imageData) {
+        //根据数据，获得key值
+        var length = imageData.length;
+        for (var i = 0; i < length; i++) {
+            var key = imageData[i].ch_url;
+            //到腾讯云平台获得图片地址
+            BannerUtil.query(key, function (url) {
+                imageData[i].ch_url = url;
+            })
+        }
+        // console.log(imageData);
+        var data={
+            food: imageData
+        }
+        res.end(JSON.stringify(data));
+    });
+});
+//添加喜欢的食物
+app.post("/addLikes", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.addLikes(
+        req.body.user_id,
+        req.body.food_id,
+        function(){
+            res.send("已经添加到自己喜欢的菜品中！");
+        });
+    console.log(req.body);
+});
+
+
 var server = app.listen(6032,function(){
     console.log("the  server is running..");
 });

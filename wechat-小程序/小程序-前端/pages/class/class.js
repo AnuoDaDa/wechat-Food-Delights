@@ -13,7 +13,7 @@ Page({
       key: 'key',
       success: function (res) {
         // 异步接口在success回调才能拿到返回值
-        var user_id = res.data
+        var user_id = JSON.parse(res.data)
         console.log(user_id);
         console.log(event.currentTarget.id);
         wx.request({

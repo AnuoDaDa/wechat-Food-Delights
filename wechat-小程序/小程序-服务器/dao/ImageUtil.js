@@ -107,7 +107,7 @@ function ImageUtil() {
 
     this.queryhomeDish = function (call) {
         // select a.* from a inner join b on a.id=b.aid where b.tagname='中国'
-        var sql = "select all_food.*,step.* from all_food inner join step on all_food.ch_id=step.url_id where all_food.type='pigs_beef_mutton'";
+        var sql = "select all_food.*,step.* from all_food inner join step on all_food.ch_id=step.url_id where all_food.type='猪牛羊肉'";
         connection.query(sql, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -120,7 +120,7 @@ function ImageUtil() {
 
     this.querybreakFast = function (call) {
         // select a.* from a inner join b on a.id=b.aid where b.tagname='中国'
-        var sql = "select all_food.*,step.* from all_food inner join step on all_food.ch_id=step.url_id where all_food.type='breakfast'";
+        var sql = "select all_food.*,step.* from all_food inner join step on all_food.ch_id=step.url_id where all_food.type='早餐'";
         connection.query(sql, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -193,6 +193,47 @@ function ImageUtil() {
         //5,连接结束
         connection.end();
     }
+
+
+    this.queryLikes = function (call) {
+        // select a.* from a inner join b on a.id=b.aid where b.tagname='中国'
+        var sql = "select all_food.ch_id,all_food.ch_name,all_food.ch_url from all_food inner join likes on all_food.ch_id=likes.dish_id";
+        connection.query(sql, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call(result);
+        });
+        connection.end();
+    }
+//插入喜欢的食物
+    this.addLikes = function (user_id,food_id, call) {
+        //1,编写sql语句
+        var userAddSql = 'INSERT INTO likes(user_id,dish_id) VALUES(?,?)';
+        var userAddSql_Params = [user_id,food_id];
+        //2,进行插入操作
+        connection.query(userAddSql, userAddSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

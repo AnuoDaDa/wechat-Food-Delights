@@ -2,7 +2,7 @@
 <view class="container">
   <view class='loginPage'>
     <view class="userinfo">
-      <button wx:if="{{!hasUserInfo&&canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <button wx:if="{{!hasUserInfo&&canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 微信授权 </button>
       <!-- !hasUserInfo&& -->
       <!-- wx:if="{{!hasUserInfo&&canIUse}}"  -->
       <!-- wx:else -->
@@ -11,7 +11,7 @@
           <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
           <view class='userMsg'>
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-            <text class='userId'>id:1000000000</text>
+            <!-- <text class='userId'>id:1000000000</text> -->
             <text class='userId' wx:if="{{userInfo.gender==1}}">男</text>
             <text class='userId' wx:elif="{{userInfo.gender==2}}">女</text>
             <text class='userId' wx:else>未知</text>
@@ -45,20 +45,19 @@
 
             <view class='Class_Menu'>
               <view wx:for="{{likes}}" wx:key="unique">
-                <view wx:if="{{item.user_id===nickName}}">
-
-                  <view class='Menu_item'>
-                    <image class='Menu_img' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.ch_url}}'></image>
-                    <!-- <image class='Menu_play' src='../../imgs/play.png'></image> -->
-                    <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange"></image>
-                    <!-- <text class='Menu_likeNum'>11</text> -->
-                    <text>{{item.ch_name}}</text>
-                    <view class='Menu_info'>{{item.ch_short_intro}}</view>
-                  </view>
+                <!-- <view > -->
+                <view class='Menu_item' wx:if="{{item.user_id==nickName}}">
+                  <image class='Menu_img' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.ch_url}}'></image>
+                  <!-- <image class='Menu_play' src='../../imgs/play.png'></image> -->
+                  <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange"></image>
+                  <!-- <text class='Menu_likeNum'>11</text> -->
+                  <text>{{item.ch_name}}</text>
+                  <view class='Menu_info'>{{item.ch_short_intro}}</view>
                 </view>
-
-
               </view>
+
+              <!--  -->
+              <!-- </view> -->
 
             </view>
 
