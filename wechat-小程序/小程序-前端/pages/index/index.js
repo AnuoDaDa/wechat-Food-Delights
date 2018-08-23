@@ -4,7 +4,12 @@ const util = require('../../utils/util.js');
 const app = getApp()
 
 Page({
-
+  move_to_classify: function () {
+    console.log(1231);
+    wx.navigateTo({
+      url: '../classify/classify'
+    })
+  },
   move_to_explore: function() {
     wx.navigateTo({
       url: '../explore/explore'

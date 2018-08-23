@@ -3,7 +3,7 @@
 .loginPage{
   width: 700rpx;
   height: 1000rpx;
-  background-color: pink;
+  /* background-color: pink; */
 }
 .userinfo {
   display: flex;
@@ -88,3 +88,13 @@ display: flex;
 }
 
 /* 选项切换 */
+.buildMenu{
+  width: 700rpx;
+  /* height: 200rx; */
+  display: block;
+  /* background-color: green; */
+  padding: 60rpx 0;
+  border-radius: 20rpx;
+  color: gray;
+  background-color: #F6F8F8;
+}

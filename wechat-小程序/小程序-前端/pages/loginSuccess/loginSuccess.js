@@ -7,9 +7,9 @@ Page({
     currentData: 0,
     userInfo: {},
     hasUserInfo: false,
+    tempFilePaths:"",
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -40,11 +40,39 @@ Page({
   },
   getUserInfo: function (e) {
     console.log(e)
+    if (e.detail.userInfo){
+      var that = this;
+      wx.request({
+        url: 'http://localhost:6032/insertUser',
+        method: 'POST',
+        data: {
+          nickName: e.detail.userInfo.nickName,
+          gender: e.detail.userInfo.gender,
+          avatarUrl: e.detail.userInfo.avatarUrl
+
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        success: function (res) {
+          console.log(res.data);
+        }
+      });
+    };
+
+    // console.log(app.globalData.openid)
+    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  move_to_build:function(){
+    wx.navigateTo({
+      url: '../build/build'
+    })
+    
   },
   //获取当前滑块的index
   bindchange: function (e) {
@@ -57,11 +85,9 @@ Page({
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
     const that = this;
-
     if (that.data.currentData === e.target.dataset.current) {
       return false;
     } else {
-
       that.setData({
         currentData: e.target.dataset.current
       })

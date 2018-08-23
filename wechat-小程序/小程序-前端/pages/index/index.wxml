@@ -89,7 +89,7 @@
   <view class='todayFood double'>
     <view class='todayFoodWords'>
       <text>特别栏目</text>
-      <text class='viewAll'>查看全部</text>
+      <!-- <text class='viewAll' bindtap='move_to_classify'>查看全部</text> -->
     </view>
 
     <view class="firstImage_nav double">
@@ -124,8 +124,7 @@
       <text>人气嘉宾</text>
       <text class='viewAll' bindtap='watchAll'>查看全部</text>
     </view>
-    ,
-
+    
     <view class="firstImage_nav double">
       <!-- <view class="page-section"> -->
       <view class="page-section-spacing">

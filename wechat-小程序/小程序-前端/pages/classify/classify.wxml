@@ -14,7 +14,7 @@
     <view class='material'>
       <view wx:for="{{foodType}}" wx:key="unique">
         <view class='material_item'>
-          <image class='material_img' data-type="{{item.type}}"  bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <image class='material_img' data-type="{{item.type_name}}"  bindtap="bindViewTap" src='{{item.imageKey}}'></image>
           <text>{{item.type_name}}</text>
         </view>
       </view>
@@ -28,7 +28,7 @@
     <view class='material'>
       <view wx:for="{{threeMeals}}" wx:key="unique">
         <view class='material_item'>
-          <image class='material_img' data-type="{{item.type}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <image class='material_img' data-type="{{item.type_name}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
           <text>{{item.type_name}}</text>
         </view>
       </view>
@@ -43,7 +43,7 @@
     <view class='material'>
       <view wx:for="{{breadDessert}}" wx:key="unique">
         <view class='material_item'>
-          <image class='material_img' data-type="{{item.type}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
+          <image class='material_img' data-type="{{item.type_name}}" bindtap="bindViewTap" src='{{item.imageKey}}'></image>
           <text>{{item.type_name}}</text>
         </view>
       </view>

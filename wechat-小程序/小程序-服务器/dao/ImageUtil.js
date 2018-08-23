@@ -91,7 +91,6 @@ function ImageUtil() {
     }
 
     this.querynewFood = function (call) {
-
         var sql = "select all_food.ch_id," +
             "all_food.ch_name," +
             "all_food.ch_short_intro," +
@@ -131,8 +130,69 @@ function ImageUtil() {
         });
         connection.end();
     }
+//插入用户信息
+    this.insertUser = function (nickName,gender,avatarUrl, call) {
+        //1,编写sql语句
+        var userAddSql = 'INSERT INTO users(user_name,user_gender,user_pic) VALUES(?,?,?)';
+        var userAddSql_Params = [nickName,gender,avatarUrl];
+        //2,进行插入操作
+        connection.query(userAddSql, userAddSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
+    //遍历食物的类别
+    this.queryfoodType = function (call) {
+        // select a.* from a inner join b on a.id=b.aid where b.tagname='中国'
+        var sql = "select three_meals.type_name from three_meals union " +
+            "select food_material.type_name from food_material union select bread_dessert.type_name from bread_dessert";
+        connection.query(sql, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call(result);
+        });
+        connection.end();
+    }
+//插入食物信息
+    this.insertFood = function (food_name,food_short_intro,food_long_intro,food_type,imageKey, call) {
+        //1,编写sql语句
+        var userAddSql = 'INSERT INTO all_food(ch_name,ch_short_intro,ch_long_intro,type,ch_url) VALUES(?,?,?,?,?)';
+        var userAddSql_Params = [food_name,food_short_intro,food_long_intro,food_type,imageKey];
+        //2,进行插入操作
+        connection.query(userAddSql, userAddSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
 
-
+//插入步骤信息
+    this.insertFoodStep = function (step1,step2,step3,step4,step5,imageKey, call) {
+        //1,编写sql语句
+        var userAddSql = 'INSERT INTO step(step1,step2,step3,step4,step5,imageKey) VALUES(?,?,?,?,?,?)';
+        var userAddSql_Params = [step1,step2,step3,step4,step5,imageKey];
+        //2,进行插入操作
+        connection.query(userAddSql, userAddSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
 
 }
 

@@ -256,12 +256,78 @@ app.get("/breakfast", function (req, res) {
                 imageData[i].imageKey = url;
             })
         }
-        console.log(imageData);
+        // console.log(imageData);
         var data={
             food: imageData
         }
         res.end(JSON.stringify(data));
     });
+});
+
+app.post("/insertUser", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.insertUser(req.body.nickName,req.body.gender,req.body.avatarUrl,function(){
+        res.send("插入成功！");
+    });
+    // console.log(req.body);
+
+});
+
+app.get("/food_type", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.queryfoodType(function (imageData) {
+        // console.log(imageData);
+        var data={
+            food: imageData
+        }
+        res.end(JSON.stringify(data));
+    });
+});
+
+// food_name food_short_intro   food_long_intro   imageKey
+app.post("/insertFood", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.insertFood(req.body.food_name,
+        req.body.food_short_intro,
+        req.body.food_long_intro,
+        req.body.food_type,
+        req.body.imageKey,
+        function(){
+        res.send("插入成功！");
+    });
+    console.log(req.body);
+
+});
+
+app.post("/insertFoodStep", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.insertFoodStep(
+        req.body.step1,
+        req.body.step2,
+        req.body.step3,
+        req.body.step4,
+        req.body.step5,
+        req.body.imageKey,
+        function(){
+            res.send("插入成功！");
+        });
+    console.log(req.body);
 });
 var server = app.listen(6032,function(){
     console.log("the  server is running..");

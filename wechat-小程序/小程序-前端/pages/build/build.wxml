@@ -1,0 +1,125 @@
+<view class="container">
+  <template data="{{title: 'form'}}" />
+
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+
+
+      <view class="page-section">
+        <view class="page-section-title">请输入食物的名字：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="food_name" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="page-section">
+        <view class="page-section-title">请输入食物的简介：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="food_short_intro" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">请详细描述食物：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="food_long_intro" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="page-section">
+        <view class="page-section-title">步骤一</view>
+        <view class="textarea-wrp">
+          <textarea auto-focus="true" style="height: 250rpx;" class='textArea' name="step1" />
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">步骤二</view>
+        <view class="textarea-wrp">
+          <textarea auto-focus="true" style="height: 250rpx;" class='textArea' name="step2" />
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">步骤三</view>
+        <view class="textarea-wrp">
+          <textarea auto-focus="true" style="height: 250rpx;" class='textArea' name="step3" />
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">步骤四</view>
+        <view class="textarea-wrp">
+          <textarea auto-focus="true" style="height: 250rpx;" class='textArea' name="step4" />
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="page-section-title">步骤五</view>
+        <view class="textarea-wrp">
+          <textarea auto-focus="true" style="height: 250rpx;" class='textArea' name="step5" />
+        </view>
+      </view>
+
+
+      <view class="page-section page-section-gap">
+        <!-- <view class="page-section-title">radio</view>
+    <radio-group name="radio" wx:for="{{foodType}}" wx:key="unique">
+      <label><radio value="{{item.type_name}}" />{{item.type_name}}</label>
+  
+    </radio-group> -->
+        <view class="page-section-title">选择图片类型：</view>
+        <radio-group name="food_type">
+          <label  wx:for="{{foodType}}" wx:key="unique">
+            <radio value="{{item.type_name}}" checked="{{item.checked}}"/>{{item.type_name}}</label>
+          <!-- <label> -->
+            <!-- <radio value="radio2" />选项二</label> -->
+        </radio-group>
+      </view>
+
+
+ <view class="page-section">
+        <view class="page-section-title">图片地址：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="imageKey" value='{{body.key}}' />
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      <view>
+        <view class="list">
+         <image src='{{body.url}}' style='width:200rpx;height:300rpx;'></image>
+          <button type="primary" class="button" bindtap="simpleUpload">图片上传</button>
+         
+        </view>
+        
+      </view>
+
+
+      <view class="btn-area">
+        <button type="primary" formType="submit" class='submit1'>Submit</button>
+        <button formType="reset">Reset</button>
+      </view>
+    </form>
+  </view>
+
+  <template/>
+</view>
