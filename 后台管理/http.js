@@ -14,6 +14,18 @@ var crypto = require('crypto');
 var multer = require('multer');
 var fs = require("fs");
 
+
+var formidable = require('formidable');
+// 引入腾讯云上传图片模块
+var COS = require('cos-nodejs-sdk-v5');
+var cos = new COS({
+    // 必选参数
+    SecretId: "AKIDmQvELKHi7KfqfMJ7jFcopeHn9NQIgTms",
+    SecretKey: "8ATedQ3VlpiQ6jIk4GKI8rtV4Sfg7OVQ",
+});
+
+
+
 //创建对象
 var app = express();
 app.use(bodyParser.json({limit: '50mb'}));
@@ -22,11 +34,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 //设置静态文件
 app.use(express.static('public'));
 app.use(cookieParser());
-
 //handle request entity too large
 app.use(bodyParser.json({limit:'50mb'}));
-
-
 //指定模板引擎
 app.set('view engine', 'ejs');
 //指定模板位置
@@ -52,6 +61,75 @@ app.get('/material', function (req, res) {
     });
 });
 
+//食材修改
+app.post('/update_material',function (req, res) {
+    console.log('3333')
+    var id=req.body.id;
+    var type=req.body.type;
+    var type_name=req.body.type_name;
+    var imageKey=req.body.image;
+    var result;
+    console.log(id);
+    //链接数据库
+    material = new Wechat();
+    material.init();
+    //取出数据
+    var sql = "update food_material set type=?,type_name=?,imageKey=? where id="+id;
+    var params = [type,type_name,imageKey,id];
+    if(!material.updata(sql,params)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+
+    res.end(JSON.stringify(response));
+});
+
+//食材修改页面展示
+app.post('/updateMaterialOn', function (req, res) {
+
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    material = new Wechat();
+    material.init();
+    //取出数据
+    var sql = "select * from food_material where id="+id;
+    material.queryAll(sql, function (materials) {
+        var response={
+            materials:materials[0]
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
+//食材添加
+app.post('/addMaterial', function (req, res) {
+
+    console.log('4444')
+// add_material_type  add_material_name
+    var material_type=req.body.material_type;
+    var material_name=req.body.material_name;
+    var material_img=req.body.material_img;
+    var result;
+    //链接数据库
+    material = new Wechat();
+    material.init();
+    //取出数据
+    var sql = "insert into food_material(type,type_name,imageKey) values (?,?,?)";
+    var params = [material_type,material_name,material_img];
+    material.insert(sql,params,function (data) {
+        result=data.insertId;
+        var response={
+            result:result
+        }
+        res.end(JSON.stringify(response));
+    })
+});
+
 //食材删除
 app.post('/deMaterial', function (req, res) {
     var id=req.body.id;
@@ -71,29 +149,6 @@ app.post('/deMaterial', function (req, res) {
     }
 
     res.end(JSON.stringify(response));
-});
-
-//歌单添加
-app.post('/addSongList', function (req, res) {
-    var name=req.body.name;
-    var creator=req.body.creator;
-    var img=req.body.img;
-    var playVolume=req.body.playvolume;
-    var result;
-
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "insert into songlist(name,creator,imgUrl,Play_volume) values (?,?,?,?)";
-    var params = [name,creator,img,playVolume];
-   songList.insert(sql,params,function (data) {
-        result=data.insertId;
-        var response={
-            result:result
-        }
-        res.end(JSON.stringify(response));
-    })
 });
 
 //三餐查询
@@ -132,6 +187,71 @@ app.post('/deMeal', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
+//三餐添加
+app.post('/addMeals', function (req, res) {
+// add_material_type  add_material_name
+    var meals_type=req.body.meals_type;
+    var meals_name=req.body.meals_name;
+    var meals_img=req.body.meals_img;
+    var result;
+    //链接数据库
+    meals = new Wechat();
+    meals.init();
+    //取出数据
+    var sql = "insert into three_meals(type,type_name,imageKey) values (?,?,?)";
+    var params = [meals_type,meals_name,meals_img];
+    meals.insert(sql,params,function (data) {
+        result=data.insertId;
+        var response={
+            result:result
+        }
+        res.end(JSON.stringify(response));
+    })
+});
+
+//三餐修改页面展示
+app.post('/updateMealOn', function (req, res) {
+
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    meal = new Wechat();
+    meal.init();
+    //取出数据
+    var sql = "select * from three_meals where id="+id;
+    meal.queryAll(sql, function (meals) {
+        var response={
+            meals:meals[0]
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
+//三餐修改
+app.post('/update_meals',function (req, res) {
+    var id=req.body.id;
+    var type=req.body.type;
+    var type_name=req.body.type_name;
+    var imageKey=req.body.image;
+    var result;
+    //链接数据库
+    meal = new Wechat();
+    meal.init();
+    //取出数据
+    var sql = "update three_meals set type=?,type_name=?,imageKey=? where id="+id;
+    var params = [type,type_name,imageKey,id];
+    if(!meal.updata(sql,params)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+
+    res.end(JSON.stringify(response));
+});
+
 //甜品查询
 app.get('/desserts', function (req, res) {
     //链接数据库
@@ -145,6 +265,28 @@ app.get('/desserts', function (req, res) {
         }
         res.end(JSON.stringify(response));
     });
+});
+
+//甜品添加
+app.post('/addDessert', function (req, res) {
+    //add_dessert_name add_dessert_type add_dessert_typename
+    var dessert_type=req.body.dessert_type;
+    var dessert_name=req.body.dessert_name;
+    var dessert_img=req.body.dessert_img;
+    var result;
+    //链接数据库
+    dessert = new Wechat();
+    dessert.init();
+    //取出数据
+    var sql = "insert into bread_dessert(type,type_name,imageKey) values (?,?,?)";
+    var params = [dessert_type,dessert_name,dessert_img];
+    dessert.insert(sql,params,function (data) {
+        result=data.insertId;
+        var response={
+            result:result
+        }
+        res.end(JSON.stringify(response));
+    })
 });
 
 //甜品删除
@@ -165,6 +307,49 @@ app.post('/deDessert', function (req, res) {
         result:result
     }
 
+    res.end(JSON.stringify(response));
+});
+
+//甜品修改页面展示
+app.post('/updateDessertOn', function (req, res) {
+
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    dessert = new Wechat();
+    dessert.init();
+    //取出数据
+    var sql = "select * from bread_dessert where id="+id;
+    dessert.queryAll(sql, function (desserts) {
+        var response={
+            desserts:desserts[0]
+        }
+        res.end(JSON.stringify(response));
+    });
+});
+
+//食材修改
+app.post('/update_dessert',function (req, res) {
+    var id=req.body.id;
+    var type=req.body.type;
+    var type_name=req.body.type_name;
+    var imageKey=req.body.image;
+    var result;
+    console.log(id);
+    //链接数据库
+    dessert = new Wechat();
+    dessert.init();
+    //取出数据
+    var sql = "update bread_dessert set type=?,type_name=?,imageKey=? where id="+id;
+    var params = [type,type_name,imageKey,id];
+    if(!dessert.updata(sql,params)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
     res.end(JSON.stringify(response));
 });
 
@@ -222,22 +407,6 @@ app.post('/deFood', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
-//收藏查询
-app.get('/collect', function (req, res) {
-    //链接数据库
-    collects = new Wechat();
-    collects.init();
-    //取出数据
-    var sql = "select collect.collect_id, users.user_name,all_food.ch_name from collect,users,all_food where collect.user_id=users.user_id and collect.ch_id=all_food.ch_id";
-    collects.queryAll(sql, function (collects) {
-        var response={
-            collects:collects
-        }
-
-        res.end(JSON.stringify(response));
-    });
-});
-
 //用户收藏删除
 app.post('/deCollect', function (req, res) {
     var id=req.body.id;
@@ -289,6 +458,47 @@ app.post('/comment_dis', function (req, res) {
         }
         res.end(JSON.stringify(response));
     });
+});
+
+//评论删除
+app.post('/deComment', function (req, res) {
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    comment = new Wechat();
+    comment.init();
+    //取出数据
+    var sql = "delete from comments where comment_id="+id;
+    if(!comment.delete(sql)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+    res.end(JSON.stringify(response));
+});
+
+//用户收藏删除
+app.post('/deCollect', function (req, res) {
+    var id=req.body.id;
+    var result;
+    //链接数据库
+    collect = new Wechat();
+    collect.init();
+    //取出数据
+    var sql = "delete from collect where collect_id="+id;
+    if(!collect.delete(sql)){
+        result=1;
+    }else{
+        result=0;
+    }
+    var response={
+        result:result
+    }
+
+    res.end(JSON.stringify(response));
 });
 
 //歌曲查询
@@ -415,7 +625,6 @@ app.post('/addUser', function (req, res) {
     })
 });
 
-
 //标签查询
 app.get('/songListTag', function (req, res) {
     //链接数据库
@@ -453,30 +662,45 @@ app.post('/deSongListTag', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
-// 百度图片上传
-app.post("/upload", multer({dest: __dirname + '/public/images/songList/'}).array('file'), function (req, res) {
-    var responseJson = {
-        code: '1'// 上传的文件信息
-    };
-    var src_path = req.files[0].path;
-    var fileName = new Date().getTime() + ".jpg";
-    var des_path = req.files[0].destination + new Date().getTime() + ".jpg";
+//图片上传至腾讯云
+app.post("/upload",multer({dest: __dirname + '/public/upload/img/'}).array('file'), function (req, res) {
 
-    console.log(fileName);
+    var filepath = req.files[0].path;
 
-    fs.rename(src_path, des_path, function (err) {
-        if (err) {
-            throw err;
-        }
-        fs.stat(des_path, function (err, stat) {
-            if (err) {
-                throw err;
+    var filename = "wechat"+new Date().getTime();
+    // 调用方法
+    cos.putObject({
+        Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000 存储桶的名称
+        Region: "ap-chengdu",
+        Key: filename, /* 必须 */
+        TaskReady: function (tid) {
+        },
+        onProgress: function (progressData) {
+
+        },
+        // 格式1. 传入文件内容
+        // Body: fs.readFileSync(filepath),
+        // 格式2. 传入文件流，必须需要传文件大小
+        Body: fs.createReadStream(filepath),
+        ContentLength: fs.statSync(filepath).size
+    }, function (err, data) {
+        if(data.statusCode==200){
+            var url = cos.getObjectUrl({
+                Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+                Region: "ap-chengdu",
+                Key: filename,
+                Expires: 600000,
+                Sign: true,
+            }, function (err, data) {
+            });
+            var body = {
+                key:filename,
+                url:url
             }
-            responseJson['upload_file'] = fileName;
-
-            res.json(responseJson);
-        });
+            res.json(body);
+        }
     });
+
 });
 
 //设置监听
