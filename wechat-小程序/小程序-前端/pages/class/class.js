@@ -8,6 +8,35 @@ Page({
   },
 
   likeChange:function(event) {
+
+    wx.getStorage({
+      key: 'key',
+      success: function (res) {
+        // 异步接口在success回调才能拿到返回值
+        var user_id = res.data
+        console.log(user_id);
+        console.log(event.currentTarget.id);
+        wx.request({
+
+          url: 'http://localhost:6032/addLikes',
+          method: 'POST',
+          data: {
+            food_id: event.currentTarget.id,
+            user_id: user_id
+          },
+          header: {
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          success: function (res) {
+            console.log(res.data);
+          }
+        })
+      },
+      fail: function () {
+        console.log('读取key1发生错误')
+      }
+    })
+   
     this.setData({
       // 页面初始化 options为页面跳转所带来的参数
       likeImg: "../../imgs/like.png"

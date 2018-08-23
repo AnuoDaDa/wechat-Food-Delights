@@ -4,6 +4,8 @@
     <view class="userinfo">
       <button wx:if="{{!hasUserInfo&&canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
       <!-- !hasUserInfo&& -->
+      <!-- wx:if="{{!hasUserInfo&&canIUse}}"  -->
+      <!-- wx:else -->
       <block wx:else>
         <view class='userBox'>
           <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -20,19 +22,54 @@
     <!-- 单页选项切换页面 -->
     <view class='topTabSwiper'>
       <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>创建菜单</view>
-      <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'> 喜欢</view>
+      <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" data-nickname="{{userInfo.nickName}}" bindtap='checkCurrent'> 喜欢</view>
     </view>
 
     <swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
       <swiper-item>
         <view class='swiper_con'>
-        
-        <view class='buildMenu' bindtap='move_to_build'>+创建菜单</view>
-        <image src='{{tempFilePaths}}'></image>
+
+          <view class='buildMenu' bindtap='move_to_build'>+创建菜单</view>
+          <image src='{{tempFilePaths}}'></image>
         </view>
       </swiper-item>
       <swiper-item>
-        <view class='swiper_con'>welcome come to 热点</view>
+        <view class='swiper_con'>
+
+
+
+
+          <!-- 显示自己喜欢的菜品 -->
+          <view class='box'>
+            <!-- 菜谱列表 -->
+
+            <view class='Class_Menu'>
+              <view wx:for="{{likes}}" wx:key="unique">
+                <view wx:if="{{item.user_id===nickName}}">
+
+                  <view class='Menu_item'>
+                    <image class='Menu_img' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.ch_url}}'></image>
+                    <!-- <image class='Menu_play' src='../../imgs/play.png'></image> -->
+                    <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange"></image>
+                    <!-- <text class='Menu_likeNum'>11</text> -->
+                    <text>{{item.ch_name}}</text>
+                    <view class='Menu_info'>{{item.ch_short_intro}}</view>
+                  </view>
+                </view>
+
+
+              </view>
+
+            </view>
+
+
+          </view>
+
+          <!-- 显示自己喜欢的菜品 -->
+
+
+
+        </view>
       </swiper-item>
     </swiper>
   </view>

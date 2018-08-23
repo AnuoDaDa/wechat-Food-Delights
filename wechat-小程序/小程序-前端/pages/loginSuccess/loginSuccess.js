@@ -1,21 +1,33 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const util = require('../../utils/util.js');
 Page({
   data: {
     currentData: 0,
     userInfo: {},
     hasUserInfo: false,
-    tempFilePaths:"",
+    tempFilePaths: "",
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  onLoad: function () {
+
+  onLoad: function() {
+    // console.log(options.type);
+    var that = this;
+    util.ask('likes', function(data1) {
+      that.setData({
+        likes: data1.food,
+      });
+    });
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
+          userInfo: app.globalData.userInfo,
+          hasUserInfo: true,
+        })
+       
+
+     
+
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -38,9 +50,19 @@ Page({
       })
     }
   },
-  getUserInfo: function (e) {
-    console.log(e)
-    if (e.detail.userInfo){
+  getUserInfo: function(e) {
+    wx.setStorage({
+      key: "key",
+      data: JSON.stringify(e.detail.userInfo.nickName),
+      success: function () {
+        console.log('写入用户信息成功')
+      },
+      fail: function () {
+        console.log('写入用户信息错误')
+      }
+    })
+    // console.log(e)
+    if (e.detail.userInfo) {
       var that = this;
       wx.request({
         url: 'http://localhost:6032/insertUser',
@@ -49,12 +71,11 @@ Page({
           nickName: e.detail.userInfo.nickName,
           gender: e.detail.userInfo.gender,
           avatarUrl: e.detail.userInfo.avatarUrl
-
         },
         header: {
           "content-type": "application/x-www-form-urlencoded"
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res.data);
         }
       });
@@ -68,23 +89,32 @@ Page({
       hasUserInfo: true
     })
   },
-  move_to_build:function(){
+
+  move_to_build: function() {
     wx.navigateTo({
       url: '../build/build'
     })
-    
+
   },
   //获取当前滑块的index
-  bindchange: function (e) {
+  bindchange: function(e) {
     const that = this;
-    console.log(e);
+    // console.log(e);
     that.setData({
       currentData: e.detail.current
     })
   },
   //点击切换，滑块index赋值
-  checkCurrent: function (e) {
-    const that = this;
+  checkCurrent: function(e) {
+    // console.log(e.target.dataset.nickname);
+    var that = this;
+    util.ask('likes', function(data1){
+      that.setData({
+        likes: data1.food,
+        nickName: e.target.dataset.nickname
+      });
+    });
+    // const that = this;
     if (that.data.currentData === e.target.dataset.current) {
       return false;
     } else {
@@ -92,6 +122,12 @@ Page({
         currentData: e.target.dataset.current
       })
     }
+  },
+  Menu_change: function(event) {
+    // console.log(event.currentTarget.dataset.foodid);
+    wx.navigateTo({
+      url: '../Menu/menu?id=' + event.currentTarget.dataset.foodid
+    })
   }
 
 })

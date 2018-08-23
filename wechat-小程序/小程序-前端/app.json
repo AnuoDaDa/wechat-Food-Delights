@@ -1,16 +1,15 @@
 {
   "pages": [
-      "pages/index/index",
-    "pages/loginSuccess/loginSuccess",
-   
     "pages/classify/classify",
+    "pages/index/index",
+    "pages/loginSuccess/loginSuccess",
     "pages/Menu/menu",
     "pages/class/class",
     "pages/show/show",
     "pages/logs/logs",
     "pages/login/login",
     "pages/explore/explore",
-  "pages/build/build"
+    "pages/build/build"
   ],
   "tabBar": {
     "color": "#999999",

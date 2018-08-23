@@ -10,16 +10,7 @@
     <text class='search_text'>搜索</text>
   </view>
 
-  <!-- 分类标签 -->
-
-  <!-- <view>
-    <scroll-view class='tags' scroll-x="true" scroll-with-animation="true" scroll-left>
-      <view wx:for="{{tags}}" wx:for-item="tag" wx:key="xxx" style=' display: inline-block;'>
-        <text class='tag_name'>标签</text>
-      </view>
-    </scroll-view>
-  </view> -->
-
+  
   <!-- 菜谱列表 -->
 
   <view class='Class_Menu'>
@@ -29,7 +20,7 @@
         <view class='Menu_item'>
           <image class='Menu_img' data-foodid="{{item.ch_id}}" bindtap="Menu_change" src='{{item.ch_url}}'></image>
           <!-- <image class='Menu_play' src='../../imgs/play.png'></image> -->
-          <image class='Menu_like' src='{{likeImg}}' bindtap="likeChange"></image>
+          <image class='Menu_like' src='{{likeImg}}' id="{{item.ch_id}}" bindtap="likeChange"></image>
           <!-- <text class='Menu_likeNum'>11</text> -->
           <text>{{item.ch_name}}</text>
           <view class='Menu_info'>{{item.ch_short_intro}}</view>
