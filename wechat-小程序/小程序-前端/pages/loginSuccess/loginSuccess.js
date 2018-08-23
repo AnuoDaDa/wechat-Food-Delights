@@ -1,5 +1,4 @@
-//index.js
-//获取应用实例
+
 const app = getApp()
 const util = require('../../utils/util.js');
 Page({
@@ -8,9 +7,29 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     tempFilePaths: "",
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    likeImg:"../../imgs/like.png"
   },
+  likeChange:function(e){
+    // console.log(e.currentTarget.id);
+    wx.request({
+      url: 'http://localhost:6032/DeleteLikes',
+      method: 'POST',
+      data: {
+        id: e.currentTarget.id
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      success: function (res) {
+        console.log(res.data);
+      }
+    });
+    this.setData({
+      likeImg: "../../imgs/unlike.png"
+    })
 
+  },
   onLoad: function() {
     // console.log(options.type);
     var that = this;
@@ -21,12 +40,12 @@ Page({
     // });
     if (app.globalData.userInfo) {
       this.setData({
-          userInfo: app.globalData.userInfo,
-          hasUserInfo: true,
-        })
-       
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true,
+      })
 
-     
+
+
 
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -54,10 +73,10 @@ Page({
     wx.setStorage({
       key: "key",
       data: JSON.stringify(e.detail.userInfo.nickName),
-      success: function () {
+      success: function() {
         console.log('写入用户信息成功')
       },
-      fail: function () {
+      fail: function() {
         console.log('写入用户信息错误')
       }
     })
@@ -89,7 +108,7 @@ Page({
       hasUserInfo: true
     })
   },
-
+ //跳转到创建菜单的页面
   move_to_build: function() {
     wx.navigateTo({
       url: '../build/build'
@@ -110,28 +129,24 @@ Page({
     // console.log(e.target.dataset.nickname);
     wx.getStorage({
       key: 'key',
-      success: function (res) {
+      success: function(res) {
         // 异步接口在success回调才能拿到返回值
         var user_id = JSON.parse(res.data)
         console.log(user_id);
         // console.log(event.currentTarget.id);
-       
-        util.ask('likes', function (data1) {
+
+        util.ask('likes', function(data1) {
           that.setData({
             likes: data1.food,
             nickName: user_id
           });
         });
       },
-      fail: function () {
+      fail: function() {
         console.log('读取key1发生错误')
       }
     })
 
-
-
-    
-    
     // const that = this;
     if (that.data.currentData === e.target.dataset.current) {
       return false;
