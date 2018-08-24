@@ -264,6 +264,7 @@ app.get("/breakfast", function (req, res) {
     });
 });
 
+//用户登录的时候将用户的信息插入到数据库中的user表中
 app.post("/insertUser", function (req, res) {
     //1, 引入模块
     var ImageUtil = require('./dao/ImageUtil');
@@ -293,6 +294,7 @@ app.get("/food_type", function (req, res) {
 });
 
 // food_name food_short_intro   food_long_intro   imageKey
+//插入食物
 app.post("/insertFood", function (req, res) {
     //1, 引入模块
     var ImageUtil = require('./dao/ImageUtil');
@@ -310,7 +312,7 @@ app.post("/insertFood", function (req, res) {
     console.log(req.body);
 
 });
-
+//插入食物的步骤
 app.post("/insertFoodStep", function (req, res) {
     //1, 引入模块
     var ImageUtil = require('./dao/ImageUtil');
@@ -371,10 +373,58 @@ app.post("/addLikes", function (req, res) {
         function(){
             res.send("已经添加到自己喜欢的菜品中！");
         });
-    console.log(req.body);
+    // console.log(req.body);
 });
 
+app.post("/DeleteLikes", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    imageUtil.DeleteLikes(
+        req.body.id,
+        function(){
+            res.send("已经取消掉自己喜欢的菜品中！");
+        });
+    console.log(req.body);
+});
+//取消喜欢的食物
+app.post("/UpdateLikes", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    var num = 0;
+    imageUtil.UpdateLikes(
+        num,
+        req.body.id,
 
+        req.body.user,
+        function(){
+            res.send("已经取消le自己喜欢的菜品！");
+        });
+    console.log(req.body);
+});
+//添加喜欢的食物
+app.post("/UpdateCancelLikes", function (req, res) {
+    //1, 引入模块
+    var ImageUtil = require('./dao/ImageUtil');
+    //2,创建对象
+    imageUtil = new ImageUtil();
+    imageUtil.init();
+    var num = 1;
+    imageUtil.UpdateLikes(
+        num,
+        req.body.id,
+        // req.body.isLike,
+        req.body.user,
+        function(){
+            res.send("已经取消le自己喜欢的菜品！");
+        });
+    // console.log(req.body);
+});
 var server = app.listen(6032,function(){
     console.log("the  server is running..");
 });

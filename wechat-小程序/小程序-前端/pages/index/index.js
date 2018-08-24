@@ -4,7 +4,7 @@ const util = require('../../utils/util.js');
 const app = getApp()
 
 Page({
-  move_to_classify: function () {
+  move_to_classify: function() {
     console.log(1231);
     wx.navigateTo({
       url: '../classify/classify'
@@ -28,6 +28,15 @@ Page({
 
   },
   onLoad: function(options) {
+    //背景音乐设置
+    var backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.title = '山鬼'
+    backgroundAudioManager.epname = '山鬼'
+    backgroundAudioManager.singer = 'Winky诗'
+    backgroundAudioManager.src =        'https://qq-music-1257212764.cos.ap-chengdu.myqcloud.com/Winky%E8%AF%97%20-%20%E5%B1%B1%E9%AC%BC.mp3'
+//背景音乐设置
+
+
     var that = this;
     util.ask('new_food', function(data) {
         that.setData({
@@ -38,10 +47,10 @@ Page({
       util.ask('home_dish', function(data) {
         that.setData({
           homeDish: data.food,
-          random2: Math.floor(Math.random() * (data.food.length - 1) )
+          random2: Math.floor(Math.random() * (data.food.length - 1))
         });
       }),
-      util.ask('breakfast', function (data) {
+      util.ask('breakfast', function(data) {
         that.setData({
           breakFast: data.food,
           random3: Math.floor(Math.random() * (data.food.length - 1))

@@ -58,7 +58,7 @@ function ImageUtil() {
 
     this.queryallFood = function (call) {
 
-        var sql = "select * from all_food";
+        var sql = "select all_food.*,likes.* from all_food,likes where all_food.ch_id=likes.dish_id  ";
         connection.query(sql, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -197,7 +197,7 @@ function ImageUtil() {
 
     this.queryLikes = function (call) {
         // select a.* from a inner join b on a.id=b.aid where b.tagname='中国'
-        var sql = "select all_food.ch_id,all_food.ch_name,all_food.ch_url from all_food inner join likes on all_food.ch_id=likes.dish_id";
+        var sql = "select all_food.*,likes.* from all_food inner join likes on all_food.ch_id=likes.dish_id";
         connection.query(sql, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -224,12 +224,62 @@ function ImageUtil() {
         connection.end();
     }
 
+//取消掉自己喜欢的食物
+    this.DeleteLikes = function (deleteid, call) {
 
+        // db.execSQL("delete from tb_diary2 where _id in ("+ sb + ")",
+        //     (Object[]) ids);
+        //更新id，使id大于要删除的id的往前移动一位。
+        // db.execSQL("update tb_diary2 set _id=_id-1 where _id > ?",(Object[] )ids);
+        //1,编写sql语句
+        var userGetSql = "delete from likes where likes.id=" + deleteid;
+        //2,进行删除操作
+        connection.query(userGetSql, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
 
+//修改喜欢的食物
+    this.UpdateLikes = function (num,id,user, call) {
+        //1,编写sql语句UPDATE TableName SET c = 新值 WHERE (a=1 AND b=2)
+        var userModSql = "UPDATE likes SET isLike =? WHERE (user_id='" + user +"' AND dish_id="+id+")";
+        var userModSql_Params = [num];
+        // console.log(id);
+//5，更新操作
+        connection.query(userModSql, userModSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
 
-
-
-
+//取消喜欢的食物
+    this.UpdateCancelLikes = function (num,user, call) {
+        //1,编写sql语句UPDATE TableName SET c = 新值 WHERE (a=1 AND b=2)
+        var userModSql = "UPDATE likes SET isLike =? WHERE (user_id='" + user +"' AND dish_id="+id+")";
+        var userModSql_Params = [num];
+        // console.log(id);
+//5，更新操作
+        connection.query(userModSql, userModSql_Params, function (err, result) {
+            if (err) {
+                console.log('[INSERT ERROR] - ', err.message);
+                return;
+            }
+            call();
+        });
+        //5,连接结束
+        connection.end();
+    }
 
 
 

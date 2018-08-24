@@ -1,6 +1,10 @@
 //app.js
 App({
-  onLaunch: function () {
+  onload: function() {
+    var backgroundAudioManager = wx.getBackgroundAudioManager()
+    backgroundAudioManager.src = 'https://qq-music-1257212764.cos.ap-chengdu.myqcloud.com/Winky%E8%AF%97%20-%20%E5%B1%B1%E9%AC%BC.mp3' // 设置了 src 之后会自动播放
+  },
+  onLaunch: function() {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
