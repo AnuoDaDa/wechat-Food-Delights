@@ -2724,14 +2724,19 @@
             },
             function(data,status){
                 var materials=JSON.parse(data).materials;
-                $('#update_material_type').attr("value",materials.type);
-                $('#update_material_name').attr("value",materials.type_name);
+                $('#update_material_type').prop({
+                    value:materials.type
+                });
+                $('#update_material_name').prop({
+                    value:materials.type_name
+                });
                 $('#update_material_img').prop({
-                    src:materials.imageKey
+                    src:materials.imageKey,
+                    name:materials.imageKey
                 })
             });
 
-        $('#updateMaterial').click(function () {
+        $('#updateMaterial').unbind('click').click(function () {
             var type=document.getElementById('update_material_type').value;
             var type_name=document.getElementById('update_material_name').value;
             var image=$('#update_material_img').attr('name');
@@ -2785,14 +2790,19 @@
             },
             function(data,status){
                 var meals=JSON.parse(data).meals;
-                $('#update_meals_type').attr("value",meals.type);
-                $('#update_meals_name').attr("value",meals.type_name);
+                $('#update_meals_type').prop({
+                    value:meals.type
+                });
+                $('#update_meals_name').prop({
+                    value:meals.type_name
+                });
                 $('#update_meals_img').prop({
-                    src:meals.imageKey
+                    src:meals.imageKey,
+                    name:meals.imageKey
                 })
             });
 
-        $('#updateMeal').click(function () {
+        $('#updateMeal').unbind('click').click(function () {
             var type=document.getElementById('update_meals_type').value;
             var type_name=document.getElementById('update_meals_name').value;
             var image=$('#update_meals_img').attr('name');
@@ -2810,9 +2820,7 @@
                         alert("修改失败，请重新修改！")
                     }else{
                         $('#updateMeal_C').click();
-                        $('#meals_cont').children().remove();
                         $('#mealsMang').click();
-                        $('#update_meals_img').removeAttr('src');
                     }
                 });
         })
@@ -2831,7 +2839,7 @@
                     if(result==1){
                         alert("删除失败，请重新删除！")
                     }else{
-                        document.getElementById("meal"+id).remove();
+                        document.getElementById("dessert"+id).remove();
                         $('#DessertCancel').click();
                     }
                 });
@@ -2847,14 +2855,19 @@
             },
             function(data,status){
                 var desserts=JSON.parse(data).desserts;
-                $('#update_dessert_type').attr("value",desserts.type);
-                $('#update_dessert_name').attr("value",desserts.type_name);
+                $('#update_dessert_type').prop({
+                    value:desserts.type
+                });
+                $('#update_dessert_name').prop({
+                    value:desserts.type_name
+                });
                 $('#update_dessert_img').prop({
-                    src:desserts.imageKey
+                    src:desserts.imageKey,
+                    name:desserts.imageKey
                 })
             });
 
-        $('#updateDessert').click(function () {
+        $('#updateDessert').unbind('click').click(function () {
             var type=document.getElementById('update_dessert_type').value;
             var type_name=document.getElementById('update_dessert_name').value;
             var image=$('#update_dessert_img').attr('name');
@@ -2871,7 +2884,6 @@
                     if(result==1){
                         alert("修改失败，请重新修改！")
                     }else{
-                        console.log('11111111')
                         $('#updateDessert_C').click();
                         $('#dessertMang').click();
                     }
@@ -3066,7 +3078,7 @@
                 function(data,status){
                     var result=JSON.parse(data).result;
                     if(result!=0){
-                        var str=' <div class="row"  id="'+result+'">' +
+                        var str=' <div class="row"  id="material'+result+'">' +
                             '<div class="col-xs-2 ">'+material_type+'</div>' +
                             '<div class="col-xs-2 ">'+material_name+'</div>' +
                             '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+material_img+'"></div>' +
@@ -3126,7 +3138,7 @@
                 function(data,status){
                     var result=JSON.parse(data).result;
                     if(result!=0){
-                        var str=' <div class="row"  id="'+result+'">' +
+                        var str=' <div class="row"  id="meal'+result+'">' +
                             '<div class="col-xs-2 ">'+meals_type+'</div>' +
                             '<div class="col-xs-2 ">'+meals_name+'</div>' +
                             '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+meals_img+'"></div>' +
@@ -3153,7 +3165,7 @@
             $.get(url,function(data,status){
                 var desserts=JSON.parse(data).desserts;
                 desserts.forEach(function (dessert) {
-                    var str='<div class="row" id="meal'+dessert.id+'">' +
+                    var str='<div class="row" id="dessert'+dessert.id+'">' +
                         '<div class="col-xs-2 ">'+dessert.type+'</div>' +
                         '<div class="col-xs-2 ">'+dessert.type_name+'</div>' +
                         '<div class="col-xs-2 "><img width="50px" height="50px" src="'+dessert.imageKey+'"></div>'+
@@ -3184,7 +3196,7 @@
                 function(data,status){
                     var result=JSON.parse(data).result;
                     if(result!=0){
-                        var str=' <div class="row"  id="'+result+'">' +
+                        var str=' <div class="row"  id="dessert'+result+'">' +
                             '<div class="col-xs-2 ">'+dessert_type+'</div>' +
                             '<div class="col-xs-2 ">'+dessert_name+'</div>' +
                             '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+dessert_img+'"></div>' +
