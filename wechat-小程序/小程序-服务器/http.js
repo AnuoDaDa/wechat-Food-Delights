@@ -53,7 +53,6 @@ app.get("/food_material", function (req, res) {
                 imageData[i].imageKey = url;
             })
         }
-        // console.log(imageData);
        var data={
             food: imageData
         }

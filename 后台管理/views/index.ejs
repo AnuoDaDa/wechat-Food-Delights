@@ -2329,9 +2329,11 @@
         img.style.width='100px';
         img.style.height='100px';
         img.src=url;
-        img.setAttribute('name',response.url);
+        img.setAttribute('name',response.key);
+        img.setAttribute('data-imgname',response.url);
         img.setAttribute('id','MaterialImg')
         uploaImg.appendChild(img);
+        console.log(response.key);
     });
 
     // 文件上传失败，显示上传出错。
@@ -2392,7 +2394,8 @@
         img.style.width='100px';
         img.style.height='100px';
         img.src=url;
-        img.setAttribute('name',response.url);
+        img.setAttribute('name',response.key);
+        img.setAttribute('data-imgname',response.url);
         img.setAttribute('id','DessertImg')
         uploaImg.appendChild(img);
     });
@@ -2455,7 +2458,8 @@
         img.style.width='100px';
         img.style.height='100px';
         img.src=url;
-        img.setAttribute('name',response.url);
+        img.setAttribute('name',response.key);
+        img.setAttribute('data-imgname',response.url);
         img.setAttribute('id','MealsImg')
         uploaImg.appendChild(img);
     });
@@ -2515,6 +2519,7 @@
         var url=response.url;
         img.src=url;
         img.setAttribute('name',response.url);
+        img.setAttribute('data-imgname',response.key);
     });
 
     // 文件上传失败，显示上传出错。
@@ -2572,6 +2577,7 @@
         var url=response.url;
         img.src=url;
         img.setAttribute('name',response.url);
+        img.setAttribute('data-imgname',response.key);
     });
 
     // 文件上传失败，显示上传出错。
@@ -2585,7 +2591,6 @@
     });
 
 </script>
-
 <!--修改用餐场景-->
 <script type="text/javascript">
 
@@ -2630,6 +2635,7 @@
         var url=response.url;
         img.src=url;
         img.setAttribute('name',response.url);
+        img.setAttribute('data-imgname',response.key);
     });
 
     // 文件上传失败，显示上传出错。
@@ -2739,7 +2745,7 @@
         $('#updateMaterial').unbind('click').click(function () {
             var type=document.getElementById('update_material_type').value;
             var type_name=document.getElementById('update_material_name').value;
-            var image=$('#update_material_img').attr('name');
+            var image=$('#update_material_img').attr('data-imgname');
 
             var url ="http://localhost:8000/update_material";
             $.post(url,{
@@ -2805,7 +2811,7 @@
         $('#updateMeal').unbind('click').click(function () {
             var type=document.getElementById('update_meals_type').value;
             var type_name=document.getElementById('update_meals_name').value;
-            var image=$('#update_meals_img').attr('name');
+            var image=$('#update_meals_img').attr('data-imgname');
 
             var url ="http://localhost:8000/update_meals";
             $.post(url,{
@@ -2870,7 +2876,7 @@
         $('#updateDessert').unbind('click').click(function () {
             var type=document.getElementById('update_dessert_type').value;
             var type_name=document.getElementById('update_dessert_name').value;
-            var image=$('#update_dessert_img').attr('name');
+            var image=$('#update_dessert_img').attr('data-imgname');
 
             var url ="http://localhost:8000/update_dessert";
             $.post(url,{
@@ -3068,7 +3074,7 @@
             var material_type =$('#add_material_type').val();
             var material_name=$('#add_material_name').val();
             var material_img=$('#MaterialImg').attr('name');
-
+            var material_imgname=$('#MaterialImg').attr('data-imgname');
             var url ="http://localhost:8000/addMaterial";
             $.post(url,{
                     material_type:material_type,
@@ -3081,7 +3087,7 @@
                         var str=' <div class="row"  id="material'+result+'">' +
                             '<div class="col-xs-2 ">'+material_type+'</div>' +
                             '<div class="col-xs-2 ">'+material_name+'</div>' +
-                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+material_img+'"></div>' +
+                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+material_imgname+'"></div>' +
                             '<div class="col-xs-2">' +
                             '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseMaterial" onclick="updateMaterial('+result+')">修改</button>' +
                             '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMaterial"  onclick="deleteMaterial('+result+')">删除</button>' +
@@ -3124,6 +3130,7 @@
             var meals_type =$('#add_meals_type').val();
             var meals_name=$('#add_meals_name').val();
             var meals_img=$('#MealsImg').attr('name');
+            var meals_imgname=$('#MealsImg').attr('data-imgname');
 
             console.log(meals_type)
             console.log(meals_name)
@@ -3141,7 +3148,7 @@
                         var str=' <div class="row"  id="meal'+result+'">' +
                             '<div class="col-xs-2 ">'+meals_type+'</div>' +
                             '<div class="col-xs-2 ">'+meals_name+'</div>' +
-                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+meals_img+'"></div>' +
+                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+meals_imgname+'"></div>' +
                             '<div class="col-xs-2">' +
                             '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseMeal" onclick="updateMeal('+result+')">修改</button>' +
                             '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteMeal"  onclick="deleteMeal('+result+')">删除</button>' +
@@ -3185,6 +3192,7 @@
             var dessert_type =$('#add_dessert_type').val();
             var dessert_name=$('#add_dessert_name').val();
             var dessert_img=$('#DessertImg').attr('name');
+            var dessert_imgname=$('#DessertImg').attr('data-imgname');
             // console.log(dessert_img)
 
             var url ="http://localhost:8000/addDessert";
@@ -3199,7 +3207,7 @@
                         var str=' <div class="row"  id="dessert'+result+'">' +
                             '<div class="col-xs-2 ">'+dessert_type+'</div>' +
                             '<div class="col-xs-2 ">'+dessert_name+'</div>' +
-                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+dessert_img+'"></div>' +
+                            '<div class="col-xs-2 "><img  width="50px" height="50px" src="'+dessert_imgname+'"></div>' +
                             '<div class="col-xs-2">' +
                             '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#reviseDessert" onclick="updateDessert('+result+')">修改</button>' +
                             '<button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteDessert"  onclick="deleteDessert('+result+')">删除</button>' +

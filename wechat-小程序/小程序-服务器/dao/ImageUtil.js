@@ -130,7 +130,7 @@ function ImageUtil() {
         });
         connection.end();
     }
-//插入用户信息
+    //插入用户信息
     this.insertUser = function (nickName,gender,avatarUrl, call) {
         //1,编写sql语句
         var userAddSql = 'INSERT INTO users(user_name,user_gender,user_pic) VALUES(?,?,?)';
@@ -160,7 +160,7 @@ function ImageUtil() {
         });
         connection.end();
     }
-//插入食物信息
+   //插入食物信息
     this.insertFood = function (food_name,food_short_intro,food_long_intro,food_type,imageKey, call) {
         //1,编写sql语句
         var userAddSql = 'INSERT INTO all_food(ch_name,ch_short_intro,ch_long_intro,type,ch_url) VALUES(?,?,?,?,?)';
@@ -176,7 +176,6 @@ function ImageUtil() {
         //5,连接结束
         connection.end();
     }
-
 //插入步骤信息
     this.insertFoodStep = function (step1,step2,step3,step4,step5,imageKey, call) {
         //1,编写sql语句
@@ -280,13 +279,5 @@ function ImageUtil() {
         //5,连接结束
         connection.end();
     }
-
-
-
-
-
 }
-
-
-
   module.exports = ImageUtil;

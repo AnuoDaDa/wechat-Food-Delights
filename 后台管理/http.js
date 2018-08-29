@@ -54,8 +54,19 @@ app.get('/material', function (req, res) {
     //取出数据
     var sql = "select * from food_material ";
     material.queryAll(sql, function (materials) {
+        materials.forEach(function (material) {
+            var filename=material.imageKey;
+                material.imageKey=cos.getObjectUrl({
+                Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+                Region: "ap-chengdu",
+                Key: filename,
+                Expires: 600000,
+                Sign: true,
+            }, function (err, data) {
+            });
+        })
       var response={
-          materials:materials
+          materials:materials,
       }
         res.end(JSON.stringify(response));
     });
@@ -99,6 +110,15 @@ app.post('/updateMaterialOn', function (req, res) {
     //取出数据
     var sql = "select * from food_material where id="+id;
     material.queryAll(sql, function (materials) {
+        var filename=materials[0].imageKey;
+        materials[0].imageKey=cos.getObjectUrl({
+            Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+            Region: "ap-chengdu",
+            Key: filename,
+            Expires: 600000,
+            Sign: true,
+        }, function (err, data) {
+        });
         var response={
             materials:materials[0]
         }
@@ -159,6 +179,17 @@ app.get('/meals', function (req, res) {
     //取出数据
     var sql = "select * from three_meals ";
     meal.queryAll(sql, function (meals) {
+        meals.forEach(function (meal) {
+            var filename=meal.imageKey;
+            meal.imageKey=cos.getObjectUrl({
+                Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+                Region: "ap-chengdu",
+                Key: filename,
+                Expires: 600000,
+                Sign: true,
+            }, function (err, data) {
+            });
+        })
         var response={
             meals:meals
         }
@@ -220,6 +251,15 @@ app.post('/updateMealOn', function (req, res) {
     //取出数据
     var sql = "select * from three_meals where id="+id;
     meal.queryAll(sql, function (meals) {
+        var filename=meals[0].imageKey;
+        meals[0].imageKey=cos.getObjectUrl({
+            Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+            Region: "ap-chengdu",
+            Key: filename,
+            Expires: 600000,
+            Sign: true,
+        }, function (err, data) {
+        });
         var response={
             meals:meals[0]
         }
@@ -234,6 +274,7 @@ app.post('/update_meals',function (req, res) {
     var type_name=req.body.type_name;
     var imageKey=req.body.image;
     var result;
+    console.log(imageKey)
     //链接数据库
     meal = new Wechat();
     meal.init();
@@ -260,6 +301,17 @@ app.get('/desserts', function (req, res) {
     //取出数据
     var sql = "select * from bread_dessert ";
     dessert.queryAll(sql, function (desserts) {
+        desserts.forEach(function (dessert) {
+            var filename=dessert.imageKey;
+            dessert.imageKey=cos.getObjectUrl({
+                Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+                Region: "ap-chengdu",
+                Key: filename,
+                Expires: 600000,
+                Sign: true,
+            }, function (err, data) {
+            });
+        })
         var response={
             desserts:desserts
         }
@@ -321,6 +373,15 @@ app.post('/updateDessertOn', function (req, res) {
     //取出数据
     var sql = "select * from bread_dessert where id="+id;
     dessert.queryAll(sql, function (desserts) {
+        var filename=desserts[0].imageKey;
+        desserts[0].imageKey=cos.getObjectUrl({
+            Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000
+            Region: "ap-chengdu",
+            Key: filename,
+            Expires: 600000,
+            Sign: true,
+        }, function (err, data) {
+        });
         var response={
             desserts:desserts[0]
         }
@@ -501,71 +562,6 @@ app.post('/deCollect', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
-//歌曲查询
-app.get('/songs', function (req, res) {
-    //链接数据库
-    song = new Wechat();
-    song.init();
-    //取出数据
-    var sql = "select songs.song_id,songs.songName,songs.singer,songs.album,songs.imgUrl,songs.time,songlist.name from songs,songlist where songs.songList_id=songlist.songList_id";
-    song.queryAll(sql, function (songs) {
-        var response={
-            songs:songs
-        }
-
-        res.end(JSON.stringify(response));
-    });
-});
-
-//歌单删除
-app.post('/deSong', function (req, res) {
-    var id=req.body.id;
-    var result;
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "delete from songs where song_id="+id;
-    if(!songList.delete(sql)){
-        result=1;
-    }else{
-        result=0;
-    }
-    var response={
-        result:result
-    }
-
-    res.end(JSON.stringify(response));
-});
-
-//歌单添加
-app.post('/addSong', function (req, res) {
-
-    var songName=req.body.songName;
-    var singer=req.body.singer;
-    var albume=req.body.albume;
-    var songImg=req.body.songImg;
-    var songlist=req.body.songlist;
-    var time=req.body.time;
-    var result;
-
-    console.log(songlist);
-
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "insert into songs(songName,singer,album,songList_id,imgUrl,time) values (?,?,?,?,?,?)";
-    var params = [songName,singer,albume,songlist,songImg,time];
-    songList.insert(sql,params,function (data) {
-        result=data.insertId;
-        var response={
-            result:result
-        }
-        res.end(JSON.stringify(response));
-    })
-});
-
 //用户查询
 app.get('/user', function (req, res) {
     //链接数据库
@@ -603,71 +599,12 @@ app.post('/deUser', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
-//用户添加
-app.post('/addUser', function (req, res) {
-// identity userName password
-    var userName=req.body.userName;
-    var password=req.body.password;
-    var identity=req.body.identity;
-    var result;
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "insert into user(userName,userPwd,identity) values (?,?,?)";
-    var params = [userName,password,identity];
-    songList.insert(sql,params,function (data) {
-        result=data.insertId;
-        var response={
-            result:result
-        }
-        res.end(JSON.stringify(response));
-    })
-});
-
-//标签查询
-app.get('/songListTag', function (req, res) {
-    //链接数据库
-    songListTag = new Wechat();
-    songListTag.init();
-    //取出数据
-    var sql = "select songlist_tag.id,songlist.name,tags.tagName from songlist_tag,songlist,tags where songlist_tag.songList_id=songList.songList_id and songlist_tag.tag_id=tags.tag_id";
-    songListTag.queryAll(sql, function (songListTags) {
-        var response={
-            songListTags:songListTags
-        }
-
-        res.end(JSON.stringify(response));
-    });
-});
-
-//用户收藏删除
-app.post('/deSongListTag', function (req, res) {
-    var id=req.body.id;
-    var result;
-    //链接数据库
-    songList = new Wechat();
-    songList.init();
-    //取出数据
-    var sql = "delete from songlist_tag where id="+id;
-    if(!songList.delete(sql)){
-        result=1;
-    }else{
-        result=0;
-    }
-    var response={
-        result:result
-    }
-
-    res.end(JSON.stringify(response));
-});
-
 //图片上传至腾讯云
 app.post("/upload",multer({dest: __dirname + '/public/upload/img/'}).array('file'), function (req, res) {
 
     var filepath = req.files[0].path;
 
-    var filename = "wechat"+new Date().getTime();
+    var filename = req.files[0].originalname+new Date().getTime();
     // 调用方法
     cos.putObject({
         Bucket: "class-1257212730", /* 必须 */ // Bucket 格式：test-1250000000 存储桶的名称
